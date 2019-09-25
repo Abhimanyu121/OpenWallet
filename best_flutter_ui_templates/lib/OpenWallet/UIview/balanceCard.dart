@@ -44,7 +44,7 @@ class BalanceCardView extends StatelessWidget {
                   left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
                 decoration: BoxDecoration(
-                  color: FintnessAppTheme.white,
+                  color: WalletAppTheme.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       bottomLeft: Radius.circular(8.0),
@@ -52,7 +52,7 @@ class BalanceCardView extends StatelessWidget {
                       topRight: Radius.circular(40.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: FintnessAppTheme.grey.withOpacity(0.2),
+                        color: WalletAppTheme.grey.withOpacity(0.2),
                         offset: Offset(1.1, 1.1),
                         blurRadius: 10.0),
                   ],
@@ -98,11 +98,11 @@ class BalanceCardView extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily:
-                                                      FintnessAppTheme.fontName,
+                                                      WalletAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
-                                                  color: FintnessAppTheme.grey
+                                                  color: WalletAppTheme.grey
                                                       .withOpacity(0.5),
                                                 ),
                                               ),
@@ -129,12 +129,12 @@ class BalanceCardView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          WalletAppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: FintnessAppTheme
+                                                      color: WalletAppTheme
                                                           .darkerText,
                                                     ),
                                                   ),
@@ -148,13 +148,13 @@ class BalanceCardView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          WalletAppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 12,
                                                       letterSpacing: -0.2,
-                                                      color: FintnessAppTheme
+                                                      color: WalletAppTheme
                                                           .grey
                                                           .withOpacity(0.5),
                                                     ),
@@ -198,11 +198,11 @@ class BalanceCardView extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily:
-                                                      FintnessAppTheme.fontName,
+                                                      WalletAppTheme.fontName,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 16,
                                                   letterSpacing: -0.1,
-                                                  color: FintnessAppTheme.grey
+                                                  color: WalletAppTheme.grey
                                                       .withOpacity(0.5),
                                                 ),
                                               ),
@@ -229,12 +229,12 @@ class BalanceCardView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          WalletAppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
-                                                      color: FintnessAppTheme
+                                                      color: WalletAppTheme
                                                           .darkerText,
                                                     ),
                                                   ),
@@ -248,13 +248,13 @@ class BalanceCardView extends StatelessWidget {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          FintnessAppTheme
+                                                          WalletAppTheme
                                                               .fontName,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 12,
                                                       letterSpacing: -0.2,
-                                                      color: FintnessAppTheme
+                                                      color: WalletAppTheme
                                                           .grey
                                                           .withOpacity(0.5),
                                                     ),
@@ -283,13 +283,13 @@ class BalanceCardView extends StatelessWidget {
                                       width: 100,
                                       height: 100,
                                       decoration: BoxDecoration(
-                                        color: FintnessAppTheme.white,
+                                        color: WalletAppTheme.white,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(100.0),
                                         ),
                                         border: new Border.all(
                                             width: 4,
-                                            color: FintnessAppTheme
+                                            color: WalletAppTheme
                                                 .nearlyDarkBlue
                                                 .withOpacity(0.2)),
                                       ),
@@ -304,11 +304,11 @@ class BalanceCardView extends StatelessWidget {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
-                                                  FintnessAppTheme.fontName,
+                                                  WalletAppTheme.fontName,
                                               fontWeight: FontWeight.normal,
                                               fontSize: 24,
                                               letterSpacing: 0.0,
-                                              color: FintnessAppTheme
+                                              color: WalletAppTheme
                                                   .nearlyDarkBlue,
                                             ),
                                           ),
@@ -317,11 +317,11 @@ class BalanceCardView extends StatelessWidget {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
-                                                  FintnessAppTheme.fontName,
+                                                  WalletAppTheme.fontName,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
                                               letterSpacing: 0.0,
-                                              color: FintnessAppTheme.grey
+                                              color: WalletAppTheme.grey
                                                   .withOpacity(0.5),
                                             ),
                                           ),
@@ -334,7 +334,7 @@ class BalanceCardView extends StatelessWidget {
                                     child: CustomPaint(
                                       painter: CurvePainter(
                                           colors: [
-                                            FintnessAppTheme.nearlyDarkBlue,
+                                            WalletAppTheme.nearlyDarkBlue,
                                             HexColor("#0d47a1"),
                                             HexColor("#1565c0F")
                                           ],

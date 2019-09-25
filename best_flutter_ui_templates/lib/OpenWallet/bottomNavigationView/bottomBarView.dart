@@ -6,10 +6,10 @@ import 'dart:math' as math;
 
 class BottomBarView extends StatefulWidget {
   final Function(int index) changeIndex;
-  final Function addClick;
+  //final Function addClick;
   final List<TabIconData> tabIconsList;
   const BottomBarView(
-      {Key key, this.tabIconsList, this.changeIndex, this.addClick})
+      {Key key, this.tabIconsList, this.changeIndex})
       : super(key: key);
   @override
   _BottomBarViewState createState() => _BottomBarViewState();
@@ -40,7 +40,7 @@ class _BottomBarViewState extends State<BottomBarView>
             return new Transform(
               transform: new Matrix4.translationValues(0.0, 0.0, 0.0),
               child: new PhysicalShape(
-                color: FintnessAppTheme.white,
+                color: WalletAppTheme.white,
                 elevation: 16.0,
                 clipper: TabClipper(
                     radius: Tween(begin: 0.0, end: 1.0)
@@ -136,10 +136,10 @@ class _BottomBarViewState extends State<BottomBarView>
                     child: Container(
                       // alignment: Alignment.center,s
                       decoration: BoxDecoration(
-                        color: FintnessAppTheme.nearlyDarkBlue,
+                        color: WalletAppTheme.nearlyDarkBlue,
                         gradient: LinearGradient(
                             colors: [
-                              FintnessAppTheme.nearlyDarkBlue,
+                              WalletAppTheme.nearlyDarkBlue,
                               HexColor("#6A88E5"),
                             ],
                             begin: Alignment.topLeft,
@@ -147,7 +147,7 @@ class _BottomBarViewState extends State<BottomBarView>
                         shape: BoxShape.circle,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              color: FintnessAppTheme.nearlyDarkBlue
+                              color: WalletAppTheme.nearlyDarkBlue
                                   .withOpacity(0.4),
                               offset: Offset(8.0, 16.0),
                               blurRadius: 16.0),
@@ -159,11 +159,13 @@ class _BottomBarViewState extends State<BottomBarView>
                           splashColor: Colors.white.withOpacity(0.1),
                           highlightColor: Colors.transparent,
                           onTap: () {
-                            widget.addClick();
+                            setRemoveAllSelection(
+                                widget.tabIconsList[5]);
+                            widget.changeIndex(5);
                           },
                           child: Icon(
                             Icons.add,
-                            color: FintnessAppTheme.white,
+                            color: WalletAppTheme.white,
                             size: 32,
                           ),
                         ),
@@ -261,7 +263,7 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                       width: 8,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: FintnessAppTheme.nearlyDarkBlue,
+                        color: WalletAppTheme.nearlyDarkBlue,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -281,7 +283,7 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                       width: 4,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: FintnessAppTheme.nearlyDarkBlue,
+                        color: WalletAppTheme.nearlyDarkBlue,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -301,7 +303,7 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
                       width: 6,
                       height: 6,
                       decoration: BoxDecoration(
-                        color: FintnessAppTheme.nearlyDarkBlue,
+                        color: WalletAppTheme.nearlyDarkBlue,
                         shape: BoxShape.circle,
                       ),
                     ),

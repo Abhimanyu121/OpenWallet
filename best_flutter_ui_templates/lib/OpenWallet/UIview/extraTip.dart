@@ -24,7 +24,7 @@ class ExtraTip extends StatelessWidget {
                   left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
                 decoration: BoxDecoration(
-                  color: FintnessAppTheme.white,
+                  color: WalletAppTheme.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       bottomLeft: Radius.circular(8.0),
@@ -32,7 +32,7 @@ class ExtraTip extends StatelessWidget {
                       topRight: Radius.circular(40.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: FintnessAppTheme.grey.withOpacity(0.2),
+                        color: WalletAppTheme.grey.withOpacity(0.2),
                         offset: Offset(1.1, 1.1),
                         blurRadius: 10.0),
                   ],
@@ -52,11 +52,11 @@ class ExtraTip extends StatelessWidget {
                               'Tip',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontFamily: FintnessAppTheme.fontName,
+                                  fontFamily: WalletAppTheme.fontName,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
                                   letterSpacing: -0.1,
-                                  color: FintnessAppTheme.darkText),
+                                  color: WalletAppTheme.darkText),
                             ),
                           ),
                           Row(
@@ -77,10 +77,10 @@ class ExtraTip extends StatelessWidget {
                                         'Transactions on Matic are faster but initial proccess takes time. Transfer amount to matic chain if you do a lot of transactions.',
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: WalletAppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 13,
-                                          color: FintnessAppTheme.nearlyDarkBlue,
+                                          color: WalletAppTheme.nearlyDarkBlue,
                                         ),
                                       ),
                                     ),
@@ -100,7 +100,7 @@ class ExtraTip extends StatelessWidget {
                       child: Container(
                         height: 2,
                         decoration: BoxDecoration(
-                          color: FintnessAppTheme.background,
+                          color: WalletAppTheme.background,
                           borderRadius: BorderRadius.all(Radius.circular(4.0)),
                         ),
                       ),
@@ -119,11 +119,11 @@ class ExtraTip extends StatelessWidget {
                                   '60 times faster',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: WalletAppTheme.fontName,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16,
                                     letterSpacing: -0.2,
-                                    color: FintnessAppTheme.darkText,
+                                    color: WalletAppTheme.darkText,
                                   ),
                                 ),
                                 Padding(
@@ -133,10 +133,10 @@ class ExtraTip extends StatelessWidget {
                                     textAlign: TextAlign.center
                                     ,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontFamily: WalletAppTheme.fontName,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
-                                      color: FintnessAppTheme.grey
+                                      color: WalletAppTheme.grey
                                           .withOpacity(0.5),
                                     ),
                                   ),
@@ -157,11 +157,11 @@ class ExtraTip extends StatelessWidget {
                                       '23 Times cheaper',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: WalletAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
                                         letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
+                                        color: WalletAppTheme.darkText,
                                       ),
                                     ),
                                     Padding(
@@ -170,10 +170,10 @@ class ExtraTip extends StatelessWidget {
                                         'Cost',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: WalletAppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: FintnessAppTheme.grey
+                                          color: WalletAppTheme.grey
                                               .withOpacity(0.5),
                                         ),
                                       ),

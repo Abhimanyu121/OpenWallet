@@ -3,6 +3,7 @@ import 'package:best_flutter_ui_templates/OpenWallet//traning/trainingScreen.dar
 import 'package:flutter/material.dart';
 import 'bottomNavigationView/bottomBarView.dart';
 import 'walletTheme.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/cards.dart';
 import 'Screens/Wallets.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomeState extends State<Home>
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
   Widget tabBody = Container(
-    color: FintnessAppTheme.background,
+    color: WalletAppTheme.background,
   );
 
   @override
@@ -29,7 +30,7 @@ class _HomeState extends State<Home>
 
     animationController =
         AnimationController(duration: Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDiaryScreen(animationController: animationController);
+    tabBody = WalletsScreen(animationController: animationController);
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class _HomeState extends State<Home>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: WalletAppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: FutureBuilder(
@@ -76,14 +77,13 @@ class _HomeState extends State<Home>
         ),
         BottomBarView(
           tabIconsList: tabIconsList,
-          addClick: () {},
           changeIndex: (index) {
             if (index == 0 || index == 2) {
               animationController.reverse().then((data) {
                 if (!mounted) return;
                 setState(() {
                   tabBody =
-                      MyDiaryScreen(animationController: animationController);
+                      WalletsScreen(animationController: animationController);
                 });
               });
             } else if (index == 1 || index == 3) {
@@ -92,6 +92,15 @@ class _HomeState extends State<Home>
                 setState(() {
                   tabBody =
                       TrainingScreen(animationController: animationController);
+                });
+              });
+            }
+            else if(index ==5){
+              animationController.reverse().then((data) {
+                if (!mounted) return;
+                setState(() {
+                  tabBody =
+                    BuyandSell(animationController: animationController,);
                 });
               });
             }

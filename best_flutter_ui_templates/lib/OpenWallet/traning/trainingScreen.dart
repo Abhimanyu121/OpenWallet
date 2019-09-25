@@ -120,7 +120,7 @@ class _TrainingScreenState extends State<TrainingScreen>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: WalletAppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
@@ -176,13 +176,13 @@ class _TrainingScreenState extends State<TrainingScreen>
                     0.0, 30 * (1.0 - topBarAnimation.value), 0.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(topBarOpacity),
+                    color: WalletAppTheme.white.withOpacity(topBarOpacity),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(32.0),
                     ),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: FintnessAppTheme.grey
+                          color: WalletAppTheme.grey
                               .withOpacity(0.4 * topBarOpacity),
                           offset: Offset(1.1, 1.1),
                           blurRadius: 10.0),
@@ -209,11 +209,11 @@ class _TrainingScreenState extends State<TrainingScreen>
                                   "Training",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: WalletAppTheme.fontName,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
-                                    color: FintnessAppTheme.darkerText,
+                                    color: WalletAppTheme.darkerText,
                                   ),
                                 ),
                               ),
@@ -229,7 +229,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                                 child: Center(
                                   child: Icon(
                                     Icons.keyboard_arrow_left,
-                                    color: FintnessAppTheme.grey,
+                                    color: WalletAppTheme.grey,
                                   ),
                                 ),
                               ),
@@ -245,7 +245,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                                     padding: const EdgeInsets.only(right: 8),
                                     child: Icon(
                                       Icons.calendar_today,
-                                      color: FintnessAppTheme.grey,
+                                      color: WalletAppTheme.grey,
                                       size: 18,
                                     ),
                                   ),
@@ -253,11 +253,11 @@ class _TrainingScreenState extends State<TrainingScreen>
                                     "15 May",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontFamily: WalletAppTheme.fontName,
                                       fontWeight: FontWeight.normal,
                                       fontSize: 18,
                                       letterSpacing: -0.2,
-                                      color: FintnessAppTheme.darkerText,
+                                      color: WalletAppTheme.darkerText,
                                     ),
                                   ),
                                 ],
@@ -274,7 +274,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                                 child: Center(
                                   child: Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: FintnessAppTheme.grey,
+                                    color: WalletAppTheme.grey,
                                   ),
                                 ),
                               ),

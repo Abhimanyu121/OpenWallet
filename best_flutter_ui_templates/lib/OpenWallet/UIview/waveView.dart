@@ -82,7 +82,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                 children: <Widget>[
                   new Container(
                     decoration: BoxDecoration(
-                      color: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.5),
+                      color: WalletAppTheme.nearlyDarkBlue.withOpacity(0.5),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(80.0),
                           bottomLeft: Radius.circular(80.0),
@@ -90,8 +90,8 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                           topRight: Radius.circular(80.0)),
                       gradient: LinearGradient(
                         colors: [
-                          FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
-                          FintnessAppTheme.nearlyDarkBlue.withOpacity(0.5)
+                          WalletAppTheme.nearlyDarkBlue.withOpacity(0.2),
+                          WalletAppTheme.nearlyDarkBlue.withOpacity(0.5)
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -107,11 +107,11 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                 children: <Widget>[
                   new Container(
                     decoration: BoxDecoration(
-                      color: FintnessAppTheme.nearlyDarkBlue,
+                      color: WalletAppTheme.nearlyDarkBlue,
                       gradient: LinearGradient(
                         colors: [
-                          FintnessAppTheme.nearlyDarkBlue.withOpacity(0.4),
-                          FintnessAppTheme.nearlyDarkBlue
+                          WalletAppTheme.nearlyDarkBlue.withOpacity(0.4),
+                          WalletAppTheme.nearlyDarkBlue
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -138,11 +138,11 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                       '60',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontFamily: FintnessAppTheme.fontName,
+                        fontFamily: WalletAppTheme.fontName,
                         fontWeight: FontWeight.w500,
                         fontSize: 24,
                         letterSpacing: 0.0,
-                        color: FintnessAppTheme.white,
+                        color: WalletAppTheme.white,
                       ),
                     ),
                     Padding(
@@ -151,11 +151,11 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                         '%',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily: FintnessAppTheme.fontName,
+                          fontFamily: WalletAppTheme.fontName,
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                           letterSpacing: 0.0,
-                          color: FintnessAppTheme.white,
+                          color: WalletAppTheme.white,
                         ),
                       ),
                     ),
@@ -176,7 +176,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 2,
                   height: 2,
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(0.4),
+                    color: WalletAppTheme.white.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -195,7 +195,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 4,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(0.4),
+                    color: WalletAppTheme.white.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -214,7 +214,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 3,
                   height: 3,
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(0.4),
+                    color: WalletAppTheme.white.withOpacity(0.4),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -231,7 +231,7 @@ class _WaveViewState extends State<WaveView> with TickerProviderStateMixin {
                   width: 4,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(
+                    color: WalletAppTheme.white.withOpacity(
                         animationController.status == AnimationStatus.reverse
                             ? 0.0
                             : 0.4),

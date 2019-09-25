@@ -4,11 +4,15 @@ class TabIconData {
   String imagePath;
   String selctedImagePath;
   bool isSelected;
+  Icon selectedIcon;
   int index;
+  Icon icon;
   AnimationController animationController;
 
   TabIconData({
     this.imagePath = '',
+    this.icon,
+    this.selectedIcon,
     this.index = 0,
     this.selctedImagePath = "",
     this.isSelected = false,
@@ -47,5 +51,15 @@ class TabIconData {
       animationController: null,
 
     ),
+    TabIconData(
+      icon: Icon(
+        Icons.add
+      ),
+      selectedIcon: Icon(Icons.clear),
+      selctedImagePath: 'assets/fitness_app/tab_4s.png',
+      index:5,
+      isSelected: false,
+      animationController: null
+    )
   ];
 }

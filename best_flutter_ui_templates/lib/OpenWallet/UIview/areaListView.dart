@@ -114,7 +114,7 @@ class AreaView extends StatelessWidget {
                 0.0, 50 * (1.0 - animation.value), 0.0),
             child: Container(
               decoration: BoxDecoration(
-                color: FintnessAppTheme.white,
+                color: WalletAppTheme.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8.0),
                     bottomLeft: Radius.circular(8.0),
@@ -122,7 +122,7 @@ class AreaView extends StatelessWidget {
                     topRight: Radius.circular(8.0)),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                      color: FintnessAppTheme.grey.withOpacity(0.4),
+                      color: WalletAppTheme.grey.withOpacity(0.4),
                       offset: Offset(1.1, 1.1),
                       blurRadius: 10.0),
                 ],
@@ -132,7 +132,7 @@ class AreaView extends StatelessWidget {
                 child: InkWell(
                   highlightColor: Colors.transparent,
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  splashColor: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
+                  splashColor: WalletAppTheme.nearlyDarkBlue.withOpacity(0.2),
                   onTap: () {},
                   child: Column(
                     children: <Widget>[
