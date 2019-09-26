@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 import '../walletTheme.dart';
 
 
-class TrainingScreen extends StatefulWidget {
+class TransactionsScreen extends StatefulWidget {
   final AnimationController animationController;
 
-  const TrainingScreen({Key key, this.animationController}) : super(key: key);
+  const TransactionsScreen({Key key, this.animationController}) : super(key: key);
   @override
-  _TrainingScreenState createState() => _TrainingScreenState();
+  _TransactionsScreenState createState() => _TransactionsScreenState();
 }
 
-class _TrainingScreenState extends State<TrainingScreen>
+class _TransactionsScreenState extends State<TransactionsScreen>
     with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
 
@@ -206,7 +206,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Training",
+                                  "Transact",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: WalletAppTheme.fontName,
@@ -214,22 +214,6 @@ class _TrainingScreenState extends State<TrainingScreen>
                                     fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
                                     color: WalletAppTheme.darkerText,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 38,
-                              width: 38,
-                              child: InkWell(
-                                highlightColor: Colors.transparent,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                                onTap: () {},
-                                child: Center(
-                                  child: Icon(
-                                    Icons.keyboard_arrow_left,
-                                    color: WalletAppTheme.grey,
                                   ),
                                 ),
                               ),
@@ -244,13 +228,13 @@ class _TrainingScreenState extends State<TrainingScreen>
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: Icon(
-                                      Icons.calendar_today,
+                                      Icons.power_settings_new,
                                       color: WalletAppTheme.grey,
                                       size: 18,
                                     ),
                                   ),
                                   Text(
-                                    "15 May",
+                                    "Logout",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontFamily: WalletAppTheme.fontName,
@@ -263,22 +247,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 38,
-                              width: 38,
-                              child: InkWell(
-                                highlightColor: Colors.transparent,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                                onTap: () {},
-                                child: Center(
-                                  child: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: WalletAppTheme.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
+
                           ],
                         ),
                       )

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:best_flutter_ui_templates/wrappers/moonPayWrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/UIview/Card_widget.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/walletTheme.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/loader.dart';
 class BuyandSell extends StatefulWidget {
   final AnimationController animationController;
   BuyandSell({this.animationController});
@@ -76,7 +76,7 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
       child: Scaffold(
         backgroundColor: Colors.transparent,
           body:fetching?
-          _loader():_cardList()
+          Loader():_cardList()
 
       ),
     );
@@ -166,7 +166,7 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
         SizedBox(height: 8.0),
         expiry,
         SizedBox(height: 8.0),
-        loading?SpinKitChasingDots(size: 30,color: Colors.blue,):SizedBox(height: 1,)
+        loading?Loader:SizedBox(height: 1,)
 
 
 
@@ -188,125 +188,127 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
       });
     });
   }
-  _loader(){
-    return Center(
-      child: SpinKitChasingDots(size:60, color : Colors.blue),
-    );
-  }
+
 
   _appbar(){
-    return  Column(
-      children: <Widget>[
-        SizedBox(
-          height: MediaQuery.of(context).padding.top,
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 16 - 8.0 * topBarOpacity,
-              bottom: 12 - 8.0 * topBarOpacity),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Wallets",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontFamily: WalletAppTheme.fontName,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22 + 6 - 6 * topBarOpacity,
-                      letterSpacing: 1.2,
-                      color: WalletAppTheme.darkerText,
-                    ),
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Icon(
-                        Icons.power_settings_new,
-                        color: WalletAppTheme.grey,
-                        size: 18,
-                      ),
-                    ),
-                    Text(
-                      "Logout",
+    return  new SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: MediaQuery.of(context).padding.top,
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 16 - 8.0 * topBarOpacity,
+                bottom: 12 - 8.0 * topBarOpacity),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Wallets",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: WalletAppTheme.fontName,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 18,
-                        letterSpacing: -0.2,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 22 + 6 - 6 * topBarOpacity,
+                        letterSpacing: 1.2,
                         color: WalletAppTheme.darkerText,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
 
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 8,
+                    right: 8,
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: Icon(
+                          Icons.power_settings_new,
+                          color: WalletAppTheme.grey,
+                          size: 18,
+                        ),
+                      ),
+                      Text(
+                        "Logout",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: WalletAppTheme.fontName,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 18,
+                          letterSpacing: -0.2,
+                          color: WalletAppTheme.darkerText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
           ),
-        ),
 
-      ],
+        ],
+      ),
     );
   }
 
   _cardList(){
-    return Column(
-      children: <Widget>[
-        _appbar(),
-        ls.length==1?Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-                child: Column(
-                  children: <Widget>[
-                    Icon(Icons.add),
-                    Text("Add Card")
-                  ],
-                ),
-                onPressed: (){
-                  _asyncInputDialog(context).then((str){
-                    if(str =="Done!")
-                      _refresh();
-                  });
-                },
-                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
-            )
-          ],
-        ):SizedBox(
+    return ListView(
+        primary: true,
+        shrinkWrap: true,
+        children: <Widget>[
+          _appbar(),
+          ls.length==1?Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                  child: Column(
+                    children: <Widget>[
+                      Icon(Icons.add),
+                      Text("Add Card")
+                    ],
+                  ),
+                  onPressed: (){
+                    _asyncInputDialog(context).then((str){
+                      if(str =="Done!")
+                        _refresh();
+                    });
+                  },
+                  shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
+              )
+            ],
+          ):SizedBox(
 
-        ),
-        Expanded(
-          child: ListView.builder(
-              primary:  false,
-              controller: scrollController,
-              itemCount: ls.length,
-              itemBuilder: (context , position){
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CardWidget(ls[position]["lastDigits"].toString(), ls[position]["id"].toString(), ls[position]["expiryYear"].toString()),
-                );
-              }
           ),
-        ),
-        SizedBox(
-          height: 100,
-        )
-      ],
-    );
+         ListView.builder(
+             shrinkWrap: true,
+             primary:  false,
+             physics: NeverScrollableScrollPhysics(),
+             itemCount: ls.length,
+             itemBuilder: (context , position){
+               return Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: CardWidget(ls[position]["lastDigits"].toString(), ls[position]["id"].toString(), ls[position]["expiryYear"].toString()),
+               );
+             }
+
+         ),
+
+          SizedBox(
+            height: 80,
+          )
+        ],
+      );
+
   }
 }
