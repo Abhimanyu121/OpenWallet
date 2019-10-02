@@ -42,11 +42,12 @@ class _HomeState extends State<Home>
 
     animationController =
         AnimationController(duration: Duration(milliseconds: 600), vsync: this);
-    wallets = WalletsScreen(animationController: animationController);
-    deposit = TransactionsScreen(animationController: animationController);
-    fiatCrypto = BuyandSell(animationController: animationController,);
-    info =BuyandSell(animationController: animationController,);
-    transact = BuyandSell(animationController: animationController,);
+    wallets = new  WalletsScreen(animationController: animationController);
+    deposit = new  TransactionsScreen(animationController: animationController);
+    fiatCrypto = new  BuyandSell(animationController: animationController,);
+    info = new BuyandSell(animationController: animationController,);
+    transact = new  BuyandSell(animationController: animationController,);
+
     super.initState();
   }
 
@@ -58,10 +59,10 @@ class _HomeState extends State<Home>
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       color: WalletAppTheme.background,
       child: Scaffold(
-        appBar: ,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: (){setState(() {
@@ -141,105 +142,7 @@ class _HomeState extends State<Home>
       ),
     );
   }
-  Widget getAppBarUI() {
-    return Column(
-      children: <Widget>[
-        AnimatedBuilder(
-          animation: widget.animationController,
-          builder: (BuildContext context, Widget child) {
-            return FadeTransition(
-              opacity: topBarAnimation,
-              child: new Transform(
-                transform: new Matrix4.translationValues(
-                    0.0, 30 * (1.0 - topBarAnimation.value), 0.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: WalletAppTheme.white.withOpacity(topBarOpacity),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(32.0),
-                    ),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          color: WalletAppTheme.grey
-                              .withOpacity(0.4 * topBarOpacity),
-                          offset: Offset(1.1, 1.1),
-                          blurRadius: 10.0),
-                    ],
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: MediaQuery.of(context).padding.top,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            top: 16 - 8.0 * topBarOpacity,
-                            bottom: 12 - 8.0 * topBarOpacity),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Wallets",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontFamily: WalletAppTheme.fontName,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22 + 6 - 6 * topBarOpacity,
-                                    letterSpacing: 1.2,
-                                    color: WalletAppTheme.darkerText,
-                                  ),
-                                ),
-                              ),
-                            ),
 
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 8,
-                                right: 8,
-                              ),
-                              child: Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: Icon(
-                                      Icons.power_settings_new,
-                                      color: WalletAppTheme.grey,
-                                      size: 18,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Logout",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontFamily: WalletAppTheme.fontName,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18,
-                                      letterSpacing: -0.2,
-                                      color: WalletAppTheme.darkerText,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        )
-      ],
-    );
-  }
   Future<bool> getData() async {
     return true;
   }

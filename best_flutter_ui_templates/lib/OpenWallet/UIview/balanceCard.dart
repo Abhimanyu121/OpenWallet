@@ -15,6 +15,9 @@ class BalanceCardView extends StatelessWidget {
     double matic= double.parse(balanceMatic);
     double ropsten = double.parse(balanceRopsten);
     int sum = (matic+ropsten).toInt();
+    if (sum ==0){
+      return 0;
+    }
     double maticDiff = (sum - ropsten.toInt())/sum;
     int angle = (360.0*maticDiff).toInt();
     print(angle);
@@ -24,6 +27,9 @@ class BalanceCardView extends StatelessWidget {
     double matic= double.parse(balanceMatic);
     double ropsten = double.parse(balanceRopsten);
     int sum = (matic+ropsten).toInt();
+    if(sum ==0){
+      return 0;
+    }
     double maticDiff = (sum - ropsten.toInt())/sum;
     int percent = (maticDiff*100).toInt();
     return percent;

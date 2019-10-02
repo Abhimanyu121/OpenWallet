@@ -74,6 +74,7 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
     return Container(
       color: WalletAppTheme.background,
       child: Scaffold(
+        appBar: _appbar(),
         backgroundColor: Colors.transparent,
           body:fetching?
           Loader():_cardList()
@@ -191,7 +192,10 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
 
 
   _appbar(){
-    return  new SingleChildScrollView(
+    var width = MediaQuery.of(context).size.width * 0.95;
+    var height = MediaQuery.of(context).size.height * 0.12;
+    return  PreferredSize(
+      preferredSize: Size(width, height),
       child: Column(
         children: <Widget>[
           SizedBox(
@@ -262,12 +266,13 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
     );
   }
 
+
   _cardList(){
     return ListView(
         primary: true,
         shrinkWrap: true,
         children: <Widget>[
-          _appbar(),
+          //_appbar(),
           ls.length==1?Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

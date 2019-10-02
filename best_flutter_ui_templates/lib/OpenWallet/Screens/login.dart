@@ -517,6 +517,7 @@ class Login_email_ui extends State<Login_email>{
             var address = await fromHex.extractAddress();
             print(address);
             prefs.setString("address", address.toString());
+            prefs.setBool("phone_number", false);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Home()),

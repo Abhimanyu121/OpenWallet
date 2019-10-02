@@ -1,7 +1,7 @@
 import 'package:best_flutter_ui_templates/OpenWallet//UIview/areaListView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/runningView.dart';
+import 'package:best_flutter_ui_templates/OpenWallet//UIview/transactionTip.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/workoutView.dart';
+import 'package:best_flutter_ui_templates/OpenWallet//UIview/transactionView.dart';
 import 'package:flutter/material.dart';
 
 import '../walletTheme.dart';
@@ -9,7 +9,6 @@ import '../walletTheme.dart';
 
 class TransactionsScreen extends StatefulWidget {
   final AnimationController animationController;
-
   const TransactionsScreen({Key key, this.animationController}) : super(key: key);
   @override
   _TransactionsScreenState createState() => _TransactionsScreenState();
@@ -17,8 +16,9 @@ class TransactionsScreen extends StatefulWidget {
 
 class _TransactionsScreenState extends State<TransactionsScreen>
     with TickerProviderStateMixin {
-  Animation<double> topBarAnimation;
 
+  Animation<double> topBarAnimation;
+  bool phone = false;
   List<Widget> listViews = List<Widget>();
   var scrollController = ScrollController();
   double topBarOpacity = 0.0;
@@ -52,7 +52,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
         }
       }
     });
-    super.initState();
+   super.initState();
   }
 
   void addAllListData() {
@@ -60,8 +60,8 @@ class _TransactionsScreenState extends State<TransactionsScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Your program',
-        subTxt: 'Details',
+        titleTxt: 'Last Transaction',
+        subTxt: 'Refresh',
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
@@ -71,7 +71,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
     );
 
     listViews.add(
-      WorkoutView(
+      TransactionView(
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
@@ -91,8 +91,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Area of focus',
-        subTxt: 'more',
+        titleTxt: 'Transaction Chains',
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
@@ -109,6 +108,16 @@ class _TransactionsScreenState extends State<TransactionsScreen>
                 curve: Interval((1 / count) * 5, 1.0,
                     curve: Curves.fastOutSlowIn))),
         mainScreenAnimationController: widget.animationController,
+      ),
+    );
+    listViews.add(
+      TitleView(
+        titleTxt: 'SideChain <-> MainNet',
+        animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+            Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
       ),
     );
   }
@@ -261,4 +270,5 @@ class _TransactionsScreenState extends State<TransactionsScreen>
       ],
     );
   }
+
 }

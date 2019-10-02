@@ -6,6 +6,7 @@ import 'package:best_flutter_ui_templates/OpenWallet/home.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Screens/loader.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Screens/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_progress_dialog/flutter_progress_dialog.dart';
 void main() {
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
@@ -50,15 +51,17 @@ class _appState extends State<MyApp> {
       systemNavigationBarDividerColor: Colors.grey,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    return MaterialApp(
-      title: 'Flutter UI',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: AppTheme.textTheme,
-        platform: TargetPlatform.iOS,
+    return ProgressDialog(
+      child: MaterialApp(
+        title: 'Flutter UI',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: AppTheme.textTheme,
+          platform: TargetPlatform.iOS,
+        ),
+        home:  state==1?whiteLoader():(state==2?Login_email():Home()),
       ),
-      home:  state==1?whiteLoader():(state==2?Login_email():Home()),
     );
   }
 }

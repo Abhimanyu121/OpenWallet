@@ -28,6 +28,7 @@ dependencies:
   intl: ^0.16.0
   flutter_spinkit: "^4.0.0"
   http: ^0.12.0+2
+  flutter_progress_dialog: ^0.1.0
   shared_preferences: ^0.5.3+4
   email_validator: '^1.0.0'
   toast: ^0.1.3

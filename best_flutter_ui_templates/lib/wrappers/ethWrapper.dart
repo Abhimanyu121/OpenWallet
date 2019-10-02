@@ -339,18 +339,55 @@ class EthWrapper{
     });
 
   }
-  Future<int> ropstenTransactionNumber() async{;
+  Future<int> ropstenTransactionNumber() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //final String key = (prefs.getString('privateKey');
+    final String key = (prefs.getString('privateKey'));
 
     var apiUrl = "https://ropsten.infura.io/v3/311ef590f7e5472a90edfa1316248cff";
     final client = Web3Client(apiUrl, http.Client());
-    final credentials = await client.credentialsFromPrivateKey("6843DC59D41289CC20E905180F6702621DCB9798B4413C031F8CB6EF0D9FC3E0");
+    final credentials = await client.credentialsFromPrivateKey(key);
     final address = await credentials.extractAddress();
     print(address);
     int num = await client.getTransactionCount(address);
     print("count ="+num.toString());
     return num;
+
+  }
+  Future<bool> transferTokenEth(String recipient, double amount)async{
+    const apiUrl = "https://ropsten.infura.io/v3/311ef590f7e5472a90edfa1316248cff";
+    final client = Web3Client(apiUrl, http.Client());
+    await rootBundle.loadString("assets/json/StandardToken.json").then((abi)async{
+      await SharedPreferences.getInstance().then((prefs)async {
+        String privateKey = prefs.getString("privateKey");
+        Credentials credentials = EthPrivateKey.fromHex(privateKey);
+        final address = await credentials.extractAddress();
+        print(address);
+        final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
+        var transfer = contract.function('transfer');
+        await client.sendTransaction(
+          credentials,
+          Transaction.callContract(
+              gasPrice: EtherAmount.inWei(BigInt.from(10000000000)),
+              maxGas: 4000000,
+              contract: contract,
+              function: transfer,
+              parameters: [EthereumAddress.fromHex(recipient),BigInt.from(amount*1000)*BigInt.from(1000000000000000)]
+          ),
+          chainId: 3,
+
+        ).then((hash)async {
+          print(BigInt.from(amount)*BigInt.from(1000000000000000000));
+          print("tx hash: "+ hash);
+          await client.dispose().then((val){
+            prefs.setString("hash", hash);
+            prefs.setBool("transacting", true);
+            return hash;
+          });
+        });
+
+      });
+    });
+
 
   }
 }

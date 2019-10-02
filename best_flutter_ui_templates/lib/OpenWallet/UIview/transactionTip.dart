@@ -70,7 +70,7 @@ class RunningView extends StatelessWidget {
                                           top: 16,
                                         ),
                                         child: Text(
-                                          "You're doing great!",
+                                          "Enjoy Fast Transactions on Matic",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontFamily:
@@ -93,7 +93,7 @@ class RunningView extends StatelessWidget {
                                       right: 16,
                                     ),
                                     child: Text(
-                                      "Keep it up\nand stick to your plan!",
+                                      "Just one time process",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontFamily: WalletAppTheme.fontName,
@@ -130,4 +130,5 @@ class RunningView extends StatelessWidget {
       },
     );
   }
+
 }

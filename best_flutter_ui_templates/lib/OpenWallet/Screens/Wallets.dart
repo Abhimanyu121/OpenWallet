@@ -3,10 +3,11 @@ import 'package:best_flutter_ui_templates/OpenWallet//UIview/balanceCard.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//Screens/chainList.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'loader.dart';
 import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
-
+import 'dart:async';
 class WalletsScreen extends StatefulWidget {
   final AnimationController animationController;
 
@@ -15,10 +16,11 @@ class WalletsScreen extends StatefulWidget {
   _WalletsScreenState createState() => _WalletsScreenState();
 }
 
-class _WalletsScreenState extends State<WalletsScreen>
-    with TickerProviderStateMixin {
+class _WalletsScreenState extends State<WalletsScreen>with
+    AutomaticKeepAliveClientMixin {
+    //with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
-  int loading = 0;
+  int loading=0 ;
   String balanceRopsten="";
   String balanceMatic = "";
   int maticCount =0;
@@ -29,6 +31,7 @@ class _WalletsScreenState extends State<WalletsScreen>
 
   @override
   void initState() {
+
     topBarAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
         parent: widget.animationController,
         curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
@@ -74,6 +77,7 @@ class _WalletsScreenState extends State<WalletsScreen>
   }
   _fetchBalance()async{
     EthWrapper wrapper = new EthWrapper();
+
     String matic= await  wrapper.checkBalanceMatic();
     String ropsten = await wrapper.checkBalanceRopsten();
     setState(() {
@@ -162,6 +166,7 @@ class _WalletsScreenState extends State<WalletsScreen>
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       color: WalletAppTheme.background,
       child: Scaffold(
@@ -305,4 +310,8 @@ class _WalletsScreenState extends State<WalletsScreen>
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

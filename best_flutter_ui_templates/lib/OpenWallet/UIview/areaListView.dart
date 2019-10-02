@@ -1,7 +1,11 @@
+import 'package:best_flutter_ui_templates/wrappers/ScannerWrapper.dart';
 import 'package:flutter/material.dart';
-
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/MaticTransactions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 import '../walletTheme.dart';
-
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/EthreumTransactions.dart';
+import 'package:flutter_progress_dialog/flutter_progress_dialog.dart';
 class AreaListView extends StatefulWidget {
   final AnimationController mainScreenAnimationController;
   final Animation mainScreenAnimation;
@@ -15,12 +19,11 @@ class AreaListView extends StatefulWidget {
 
 class _AreaListViewState extends State<AreaListView>
     with TickerProviderStateMixin {
+
   AnimationController animationController;
   List<String> areaListData = [
-    "assets/fitness_app/area1.png",
-    "assets/fitness_app/area2.png",
-    "assets/fitness_app/area3.png",
-    "assets/fitness_app/area1.png",
+    "assets/images/eth.png",
+    "assets/images/matic.png",
   ];
 
   @override
@@ -38,6 +41,7 @@ class _AreaListViewState extends State<AreaListView>
 
   @override
   Widget build(BuildContext context) {
+   // var dialog = showProgressDialog(context: context);
     return AnimatedBuilder(
       animation: widget.mainScreenAnimationController,
       builder: (BuildContext context, Widget child) {
@@ -88,9 +92,10 @@ class _AreaListViewState extends State<AreaListView>
       },
     );
   }
+
 }
 
-class AreaView extends StatelessWidget {
+class AreaView extends StatefulWidget {
   final String imagepath;
   final AnimationController animationController;
   final Animation animation;
@@ -103,15 +108,31 @@ class AreaView extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _AreaViewState createState() => _AreaViewState();
+}
+
+class _AreaViewState extends State<AreaView> {
+  bool transacting =false;
+  bool noTransactions= true;
+  bool loading = true;
+  String hash;
+  Map json={"result":{"status":"0"}};
+  bool err =false;
+
+  @override
+  void initState(){
+    _transactionStatus();
+  }
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: animationController,
+      animation: widget.animationController,
       builder: (BuildContext context, Widget child) {
         return FadeTransition(
-          opacity: animation,
+          opacity: widget.animation,
           child: new Transform(
             transform: new Matrix4.translationValues(
-                0.0, 50 * (1.0 - animation.value), 0.0),
+                0.0, 50 * (1.0 - widget.animation.value), 0.0),
             child: Container(
               decoration: BoxDecoration(
                 color: WalletAppTheme.white,
@@ -138,7 +159,36 @@ class AreaView extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.only(top: 16, left: 16, right: 16),
-                        child: Image.asset(imagepath),
+                        child: FlatButton(
+                            onPressed: ()async {
+
+                              if (widget.imagepath=="assets/images/eth.png"){
+                                await _transactionStatus().then((val){
+
+                                  if(transacting){
+
+                                       Toast.show("Another Transaction is in progress",context, duration: Toast.LENGTH_LONG);
+                                  }
+                                  else{
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => EthereumTransactions()),
+                                      );
+
+                                  }
+                                });
+                                //push to ethereum page
+
+                              }
+                              else{
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MaticTransactions()),
+                                );
+                              }
+                            },
+                            child: Image.asset(widget.imagepath)
+                        ),
                       ),
                     ],
                   ),
@@ -149,5 +199,74 @@ class AreaView extends StatelessWidget {
         );
       },
     );
+  }
+  _transactionStatus()async {
+    await SharedPreferences.getInstance().then((prefs)async {
+      var jos;
+      bool transaction = prefs.getBool("transacting");
+      String hash= prefs.getString("hash");
+      //hash = "0x27fc3579c8fc51d1d9d673ee36efea8d0f5b2237579fd4a5d757326f5805c1fc ";
+      if(transaction ==true){
+        setState(() {
+          transacting =true;
+        });
+      }else{
+        setState(() {
+          transacting= false;
+        });}
+      if(hash ==""||hash==null){
+        setState(() {
+          noTransactions = true;
+        });
+        Map mv ={"status":"0"};
+        setState(() {
+          loading =false;
+        });
+        return mv;
+      }else{
+        setState(() {
+          this.hash = hash;
+          noTransactions =false;
+        });
+
+        print("here");
+        ScannerWrapper wrapper = new ScannerWrapper();
+        await  wrapper.getDetails(hash).then((jss) async {
+
+          print("checking:"+jss.toString());
+          setState(() {
+            json =jss;
+          });
+          jos =jss;
+          await _check();
+          setState(() {
+            loading =false;
+          });
+          return jss;
+        });
+      }
+      return jos;
+    });
+  }
+  _check()async{
+    if(json["result"]["status"]=="1"||json["message"]=="NOTOK"||json["result"]["Status"]=="0"){
+      await SharedPreferences.getInstance().then((prefs){
+        setState(() {
+          transacting=false;
+          print("transaction mereged");
+          print("check2:"+transacting.toString());
+        });
+        prefs.setBool("transacting", false);
+      });
+
+    }
+    if(json["message"]=="NOTOK"||json["result"]["Status"]=="0"){
+      setState(() {
+        print("transaction mereged");
+        transacting =false;
+        err= true;
+      });
+      print("err: check"+err.toString());
+    }
   }
 }
