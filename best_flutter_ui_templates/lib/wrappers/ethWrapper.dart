@@ -15,7 +15,7 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex("0x48b0c1d90c3058ab032c44ec52d98633587ee711"));
         var balance = contract.function('balanceOf');
         await client.call(
@@ -23,12 +23,12 @@ class EthWrapper{
           function: balance ,
           params: [address],
         ).then((balance){
-          print(balance);
-          print(balance.first);
+          print("balance: ${balance}");
+          print("balance.first: ${balance.first}");
           BigInt vr = BigInt.from(balance.first/BigInt.from(1000000000000000));
 
           double bal = vr.toDouble()/1000.0;
-          print("bal:"+bal.toString());
+          print("bal: ${bal}");
           retbal=bal;
         });
       });
@@ -46,7 +46,7 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex("0xb35456a9b634cf85569154321596ee2d62e215ba"));
         var balance = contract.function('balanceOf');
         await client.call(
@@ -54,12 +54,12 @@ class EthWrapper{
           function: balance ,
           params: [address],
         ).then((balance){
-          print(balance);
-          print(balance.first);
+          print("balance: ${balance}");
+          print("balance.first: ${balance.first}");
           BigInt vr = BigInt.from(balance.first/BigInt.from(1000000000000000));
 
           double bal = vr.toDouble()/1000.0;
-          print("bal:"+bal.toString());
+          print("bal: ${bal}");
           retbal=bal;
         });
       });
@@ -76,7 +76,7 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex("0xb35456a9b634cf85569154321596ee2d62e215ba"));
         var transfer = contract.function('transfer');
         await client.sendTransaction(
@@ -90,7 +90,7 @@ class EthWrapper{
 
         ).then((hash){
           print(BigInt.from(amount)*BigInt.from(1000000000000000000));
-          print("tx hash: "+ hash);
+          print("tx hash: ${hash}");
 
         });
       });
@@ -106,11 +106,11 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         print(BigInt.from(amount*1000)*BigInt.from(1000000000000000));
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
-        print(contract.abi.toString());
-        print(contract.address);
+        print("contract.abi: ${contract.abi}");
+        print("contract.address: ${contract.address}");
         var appr = contract.function('approve');
 
         await client.sendTransaction(
@@ -127,7 +127,7 @@ class EthWrapper{
           chainId: 3,
 
         ).then((hash)async{
-          print("completing approve:"+hash );
+          print("completing approve: ${hash}");
           await client.dispose().then((vod)async {
             prefs.setString("hash", hash);
             prefs.setBool("transacting", true);
@@ -150,10 +150,10 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
-        print(contract.abi.toString());
-        print(contract.address);
+        print("contract.abi: ${contract.abi}");
+        print("contract.address: ${contract.address}");
         var allow = contract.function('allowance');
 
         await client.sendTransaction(
@@ -170,7 +170,7 @@ class EthWrapper{
           chainId: 3,
 
         ).then((hash)async{
-          print("completing approve:"+hash );
+          print("completing approve: ${hash}");
           await client.dispose().then((vod)async {
             prefs.setString("hash", hash);
             prefs.setBool("transacting", true);
@@ -193,10 +193,10 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
-        print(contract.abi.toString());
-        print(contract.address);
+        print("contract.abi: ${contract.abi}");
+        print("contract.address: ${contract.address}");
         var allow = contract.function('increaseAllowance');
 
         await client.sendTransaction(
@@ -213,7 +213,7 @@ class EthWrapper{
           chainId: 3,
 
         ).then((hash)async{
-          print("completing approve:"+hash );
+          print("completing approve: ${hash}");
           await client.dispose().then((vod)async {
             prefs.setString("hash", hash);
             prefs.setBool("transacting", true);
@@ -236,7 +236,7 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract = DeployedContract(
             ContractAbi.fromJson(abi, "RootChain"),
             EthereumAddress.fromHex(rootChainAddress));
@@ -260,7 +260,7 @@ class EthWrapper{
           chainId: 3,
 
         ).then((hash)async{
-          print("completing approve:"+hash );
+          print("completing approve: ${hash}");
           prefs.setString("hash", hash);
           prefs.setBool("transacting", true);
           await client.dispose().then((vod)async {
@@ -283,7 +283,7 @@ class EthWrapper{
       String privateKey = prefs.getString("privateKey");
       Credentials credentials = EthPrivateKey.fromHex(privateKey);
       final address = await credentials.extractAddress();
-      print(address);
+      print("address: ${address}");
       var bal =await client.getBalance(address);
       BigInt abc = bal.getInWei;
       retbal = abc;
@@ -301,7 +301,7 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract = DeployedContract(
             ContractAbi.fromJson(abi, "ChildERC20"),
             EthereumAddress.fromHex("0xb35456a9b634cf85569154321596ee2d62e215ba"));
@@ -324,7 +324,7 @@ class EthWrapper{
           chainId: 8995,
 
         ).then((hash)async{
-          print("completing approve:"+hash );
+          print("completing approve: ${hash}");
           prefs.setString("bghash", hash);
           prefs.setBool("transacting", true);
           await client.dispose().then((vod)async {
@@ -347,9 +347,9 @@ class EthWrapper{
     final client = Web3Client(apiUrl, http.Client());
     final credentials = await client.credentialsFromPrivateKey(key);
     final address = await credentials.extractAddress();
-    print(address);
+    print("address: ${address}");
     int num = await client.getTransactionCount(address);
-    print("count ="+num.toString());
+    print("count: ${num}");
     return num;
 
   }
@@ -361,7 +361,7 @@ class EthWrapper{
         String privateKey = prefs.getString("privateKey");
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
-        print(address);
+        print("address: ${address}");
         final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
         var transfer = contract.function('transfer');
         await client.sendTransaction(
@@ -377,7 +377,7 @@ class EthWrapper{
 
         ).then((hash)async {
           print(BigInt.from(amount)*BigInt.from(1000000000000000000));
-          print("tx hash: "+ hash);
+          print("tx hash: ${hash}");
           await client.dispose().then((val){
             prefs.setString("hash", hash);
             prefs.setBool("transacting", true);
