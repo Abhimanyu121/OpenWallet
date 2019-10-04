@@ -2,6 +2,8 @@ import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//models/chainListData.dart';
 import 'package:best_flutter_ui_templates/main.dart';
 import 'package:flutter/material.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/EthereumTransactionsList.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/MaticTransactionList.dart';
 
 class ChainListView extends StatefulWidget {
   final AnimationController mainScreenAnimationController;
@@ -19,8 +21,9 @@ class _ChainListViewState extends State<ChainListView>
     with TickerProviderStateMixin {
   final int maticCount;
   final int ropstenCount;
+  final String phone;
   _ChainListViewState(
-      {this.maticCount, this.ropstenCount});
+      {this.maticCount, this.ropstenCount, this.phone });
   AnimationController animationController;
   List<ChainListData> chainListData = ChainListData.tabIconsList;
 
@@ -108,7 +111,18 @@ class ChainView extends StatelessWidget {
                 100 * (1.0 - animation.value), 0.0, 0.0),
             child: FlatButton(
               onPressed: (){
-
+                if(chainListData.imagePath=="assets/images/eth.png"){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EthereumTranscationsList()),
+                  );
+                }
+                else{
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MaticTransactionsList()),
+                  );
+                }
               },
               child: SizedBox(
                 width: 190,

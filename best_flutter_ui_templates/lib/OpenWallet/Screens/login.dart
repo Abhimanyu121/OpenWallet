@@ -54,7 +54,7 @@ class Login_email_ui extends State<Login_email>{
           children: <Widget>[
             logo,
             SizedBox(height: 48.0),
-            email? _emailui(): (otp?_otpUi(): (details?_details():(file ? _files():(card? _cards(): _keys()))))
+            email? _emailui(): (otp?_otpUi(): (details?_details():(file ? _files():(card? _cards():_cards()))))
           ],
         ),
       ),
@@ -152,15 +152,7 @@ class Login_email_ui extends State<Login_email>{
                 prefs.setString("jwt", value);
                 wrapper.getDetailStatus(value).then((val){
                   if(val){
-                    setState(() {
-                      email= false;
-                      otp = false;
-                      details = false;
-                      file =false;
-                      card =false;
-                      checking = false;
-                      keys = true;
-                    });
+                    Navigator.pop(context);
                   }
                   else{
                     setState(() {
@@ -428,13 +420,16 @@ class Login_email_ui extends State<Login_email>{
             });
             SharedPreferences prefs = await SharedPreferences.getInstance();
             String jwt = prefs.getString("jwt");
-            wrapper.addCard(jwt).then((boolean){
+            wrapper.addCard(jwt).then((boolean)async {
               print("login valeue:"+boolean.toString());
+              FocusScope.of(context).requestFocus(FocusNode());
+              SharedPreferences prefs= await SharedPreferences.getInstance();
+              prefs.setBool("allow", false);
+              prefs.setBool("approve",false);
               setState(() {
-                checking =false;
-                card = false;
-                keys= true;
+                checking = true;
               });});
+            Navigator.pop(context);
           },
           padding: EdgeInsets.all(12),
           color: Colors.blueAccent,
@@ -496,187 +491,5 @@ class Login_email_ui extends State<Login_email>{
       ],
     );
   }
-  _keys(){
-    _button1() {
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          onPressed: () async {
-            EthWrapper wrapper = new EthWrapper();
 
-            FocusScope.of(context).requestFocus(FocusNode());
-            setState(() {
-              checking = true;
-            });
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setString("privateKey", _ppk.text);
-            Credentials fromHex = EthPrivateKey.fromHex(_ppk.text);
-            var address = await fromHex.extractAddress();
-            print(address);
-            prefs.setString("address", address.toString());
-            prefs.setBool("phone_number", false);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-            );
-
-          },
-          padding: EdgeInsets.all(12),
-          color: Colors.blueAccent,
-          child: checking
-              ? SpinKitCircle(size: 10, color: Colors.black,)
-              : Text('Continue', style: TextStyle(color: Colors.white)),
-        ),
-      );
-    }
-    _buttongen() {
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          onPressed: () async {
-            Toast.show("Generating", context,duration: Toast.LENGTH_LONG);
-            FocusScope.of(context).requestFocus(FocusNode());
-            setState(() {
-              checking = true;
-            });
-            KeyInterface wrapper = new KeyInterface();
-            _newMn.text =await wrapper.generateKey();
-            gen =true;
-            setState(() {
-              checking =false;
-            });
-          },
-          padding: EdgeInsets.all(12),
-          color: Colors.blueAccent,
-          child:checking? SpinKitCircle(size :10, color: Colors.black,):Text('Generate mnemonic', style: TextStyle(color: Colors.white)),
-        ),
-      );
-    }
-    _buttoncont() {
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          onPressed: () async {
-            FocusScope.of(context).requestFocus(FocusNode());
-            SharedPreferences prefs= await SharedPreferences.getInstance();
-            prefs.setBool("allow", true);
-            prefs.setBool("approve",true);
-            setState(() {
-              checking = true;
-            });
-            if (gen){
-              Clipboard.setData(new ClipboardData(text: _newMn.text));
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Home()),
-              );
-            }
-            else{
-              Toast.show("Generate mnemonic first", context,duration: Toast.LENGTH_LONG);
-            }
-            checking =false;
-
-          },
-          padding: EdgeInsets.all(12),
-          color: Colors.blueAccent,
-          child: Text('Continue (Make sure you have saved mnemonic)', style: TextStyle(color: Colors.white)),
-        ),
-      );
-    }
-    _buttonmn() {
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          onPressed: () async {
-            FocusScope.of(context).requestFocus(FocusNode());
-            setState(() {
-              checking = true;
-            });
-            KeyInterface key = new KeyInterface();
-            key.fromMenmonic(_mn.text);
-
-          },
-          padding: EdgeInsets.all(12),
-          color: Colors.blueAccent,
-          child: checking
-              ? SpinKitCircle(size: 10, color: Colors.black,)
-              : Text('Continue', style: TextStyle(color: Colors.white)),
-        ),
-      );
-    }
-    const mne= Text("Add account using Mnemonic");
-    final mnemonic = TextFormField(
-      keyboardType: TextInputType.number,
-      autovalidate: true,
-      validator: (val) => val.length<10
-          ? 'Invalid private key'
-          : null,
-      decoration: InputDecoration(
-        hintText: 'Private key',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
-      ),
-      controller: _mn,
-    );
-    const ppk= Text("Add account using Private Key");
-    final private_key = TextFormField(
-      keyboardType: TextInputType.number,
-      autovalidate: true,
-      validator: (val) => val.length<10
-          ? 'Invalid private key'
-          : null,
-      decoration: InputDecoration(
-        hintText: 'Private key',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
-      ),
-      controller: _ppk,
-    );
-    const newacc= Text("Create new account(Copy the generated mnemonic somewhere safe)");
-    final newMnemonic = TextFormField(
-      keyboardType: TextInputType.number,
-      autovalidate: true,
-      autofocus: false,
-      decoration: InputDecoration(
-        hintText: 'Your Mnemonic will appear here',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
-      ),
-      controller: _newMn,
-    );
-    return Column(
-      children: <Widget>[
-
-
-        ppk,
-        SizedBox(height: 4.0),
-        private_key,
-        SizedBox(height: 8.0),
-        _button1(),
-        SizedBox(height: 8.0),
-        newacc,
-        SizedBox(height: 4.0),
-        newMnemonic,
-        SizedBox(height: 8.0),
-        _buttongen(),
-        SizedBox(height: 8.0),
-        _buttoncont(),
-
-
-
-      ],
-    );
-  }
 }

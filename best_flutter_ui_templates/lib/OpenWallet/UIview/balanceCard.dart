@@ -8,8 +8,9 @@ class BalanceCardView extends StatelessWidget {
   final Animation animation;
   final balanceMatic;
   final balanceRopsten;
+  final String phone;
   const BalanceCardView(
-      {Key key, this.animationController, this.animation, this.balanceRopsten,this.balanceMatic})
+      {Key key, this.animationController, this.animation, this.balanceRopsten,this.balanceMatic, this.phone})
       : super(key: key);
   _curveAngle(){
     double matic= double.parse(balanceMatic);
@@ -88,6 +89,86 @@ class BalanceCardView extends StatelessWidget {
                                               Radius.circular(4.0)),
                                         ),
                                       ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 4, bottom: 2),
+                                              child: Text(
+                                                'Account',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                  WalletAppTheme.fontName,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 16,
+                                                  letterSpacing: -0.1,
+                                                  color: WalletAppTheme.grey
+                                                      .withOpacity(0.5),
+                                                ),
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  width: 28,
+                                                  height: 28,
+                                                  child: Image.asset(
+                                                      "assets/fitness_app/tab_1.png"
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                  const EdgeInsets.only(
+                                                      left: 4, bottom: 3),
+                                                  child: Text(
+                                                    phone,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily:
+                                                      WalletAppTheme
+                                                          .fontName,
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize: 16,
+                                                      color: WalletAppTheme
+                                                          .darkerText,
+                                                    ),
+                                                  ),
+                                                ),
+
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: <Widget>[
+                                      Container(
+                                        height: 48,
+                                        width: 2,
+                                        decoration: BoxDecoration(
+                                          color: HexColor('#87A0E5')
+                                              .withOpacity(0.5),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(4.0)),
+                                        ),
+                                      ),
+
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(

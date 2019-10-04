@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/home.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Screens/loader.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/login.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/newLogin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_progress_dialog/flutter_progress_dialog.dart';
 void main() {
@@ -60,7 +60,7 @@ class _appState extends State<MyApp> {
           textTheme: AppTheme.textTheme,
           platform: TargetPlatform.iOS,
         ),
-        home:  state==1?whiteLoader():(state==2?Login_email():Home()),
+        home:  state==1?whiteLoader():(state==2?newLogin():Home()),
       ),
     );
   }

@@ -1,34 +1,51 @@
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/areaListView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/transactionTip.dart';
+import 'package:best_flutter_ui_templates/OpenWallet//UIview/extraTip.dart';
+import 'package:best_flutter_ui_templates/OpenWallet//UIview/balanceCard.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/transactionView.dart';
+import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
+import 'package:best_flutter_ui_templates/OpenWallet//Screens/chainList.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../UIview/depositList.dart';
-import '../walletTheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'loader.dart';
+import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
 
-
-class TransactionsScreen extends StatefulWidget {
+class WalletsScreen extends StatefulWidget {
   final AnimationController animationController;
-  const TransactionsScreen({Key key, this.animationController}) : super(key: key);
+
+  const WalletsScreen({Key key, this.animationController}) : super(key: key);
   @override
-  _TransactionsScreenState createState() => _TransactionsScreenState();
+  _WalletsScreenState createState() => _WalletsScreenState();
 }
 
-class _TransactionsScreenState extends State<TransactionsScreen>
-    with TickerProviderStateMixin {
-
+class _WalletsScreenState extends State<WalletsScreen>with
+    AutomaticKeepAliveClientMixin {
+  //with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
-  bool phone = false;
+  int loading=0 ;
+  String balanceRopsten="";
+  String balanceMatic = "";
+  int maticCount =0;
+  int ropstenCount=0;
+  String phone="";
   List<Widget> listViews = List<Widget>();
   var scrollController = ScrollController();
   double topBarOpacity = 0.0;
 
   @override
   void initState() {
+
     topBarAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
         parent: widget.animationController,
         curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
-    addAllListData();
+    _fetchBalance().then((val){
+      _fetchCount().then((val){
+        _fetchPhone().then((val){
+          addAllListData();
+          print("load ="+loading.toString());
+        });
+      });
+    });
+
 
     scrollController.addListener(() {
       if (scrollController.offset >= 24) {
@@ -52,64 +69,108 @@ class _TransactionsScreenState extends State<TransactionsScreen>
         }
       }
     });
-   super.initState();
+    super.initState();
   }
+  _fetchPhone()async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String str= prefs.getString("phoneNo");
+    setState(() {
+      phone= str;
+    });
+    return str;
+  }
+  _fetchCount() async {
+    EthWrapper wrapper = new EthWrapper();
+    int ropsten = await wrapper.ropstenTransactionNumber();
+    setState(() {
+      ropstenCount= ropsten;
+      loading= loading+1;
+    });
+  }
+  _fetchBalance()async{
+    EthWrapper wrapper = new EthWrapper();
 
+    String matic= await  wrapper.checkBalanceMatic();
+    String ropsten = await wrapper.checkBalanceRopsten();
+    setState(() {
+      balanceRopsten =ropsten;
+      balanceMatic = matic;
+      loading= loading+1;
+    });
+    return true;
+  }
   void addAllListData() {
-    var count = 5;
+    var count = 9;
 
     listViews.add(
       TitleView(
-        titleTxt: 'Last Transaction',
-        subTxt: 'Refresh',
+        titleTxt: 'Wallet Balances',
+        //subTxt: 'Details',
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController,
-      ),
-    );
-
-    listViews.add(
-      TransactionView(
-        animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController,
-            curve:
-                Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
+            Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
     listViews.add(
-      RunningView(
+      BalanceCardView(
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 3, 1.0, curve: Curves.fastOutSlowIn))),
+            Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
+        balanceMatic: balanceMatic,
+        balanceRopsten: balanceRopsten,
+        phone: phone,
       ),
     );
-
     listViews.add(
       TitleView(
-        titleTxt: 'Transaction Chains',
+        titleTxt: 'Transaction History',
+        //subTxt: 'Trnsactions',
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+            Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
 
     listViews.add(
-      AreaListView(
+      ChainListView(
         mainScreenAnimation: Tween(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
                 parent: widget.animationController,
-                curve: Interval((1 / count) * 5, 1.0,
+                curve: Interval((1 / count) * 3, 1.0,
                     curve: Curves.fastOutSlowIn))),
         mainScreenAnimationController: widget.animationController,
+        maticCount: maticCount,
+        ropstenCount: ropstenCount,
       ),
     );
+
+    listViews.add(
+      TitleView(
+        titleTxt: 'Extras',
+        animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+            Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
+      ),
+    );
+
+    listViews.add(
+      ExtraTip(
+        animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+            Interval((1 / count) * 5, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
+      ),
+    );
+
   }
 
   Future<bool> getData() async {
@@ -118,13 +179,14 @@ class _TransactionsScreenState extends State<TransactionsScreen>
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       color: WalletAppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
-            getMainListViewUI(),
+            loading!=2? Loader(): getMainListViewUI(),
             getAppBarUI(),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
@@ -205,7 +267,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Transact",
+                                  "Wallets",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: WalletAppTheme.fontName,
@@ -217,6 +279,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
                                 ),
                               ),
                             ),
+
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 8,
@@ -261,4 +324,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
     );
   }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

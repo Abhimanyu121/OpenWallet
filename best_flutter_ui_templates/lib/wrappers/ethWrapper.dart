@@ -2,6 +2,8 @@ import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 class EthWrapper{
   Map json;
   final rootChainAddress = "0x60e2b19b9a87a3f37827f2c8c8306be718a5f9b4";
@@ -74,6 +76,8 @@ class EthWrapper{
     await rootBundle.loadString("assets/json/StandardToken.json").then((abi)async{
       await SharedPreferences.getInstance().then((prefs)async {
         String privateKey = prefs.getString("privateKey");
+        String recpAddress =await fetchAddress(recipient);
+        print(recpAddress);
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
         print(address);
@@ -84,7 +88,7 @@ class EthWrapper{
           Transaction.callContract(
               contract: contract,
               function: transfer,
-              parameters: [EthereumAddress.fromHex(recipient),BigInt.from(amount*1000)*BigInt.from(1000000000000000)]
+              parameters: [EthereumAddress.fromHex(recpAddress),BigInt.from(amount*1000)*BigInt.from(1000000000000000)]
           ),
           chainId: 8995,
 
@@ -131,6 +135,7 @@ class EthWrapper{
           await client.dispose().then((vod)async {
             prefs.setString("hash", hash);
             prefs.setBool("transacting", true);
+            prefs.setBool("approve", true);
             return hash;
 
           });
@@ -174,6 +179,7 @@ class EthWrapper{
           await client.dispose().then((vod)async {
             prefs.setString("hash", hash);
             prefs.setBool("transacting", true);
+            prefs.setBool("allow", true);
             return hash;
 
           });
@@ -216,6 +222,7 @@ class EthWrapper{
           print("completing approve:"+hash );
           await client.dispose().then((vod)async {
             prefs.setString("hash", hash);
+            prefs.setBool("increase", true);
             prefs.setBool("transacting", true);
             return hash;
           });
@@ -362,32 +369,83 @@ class EthWrapper{
         Credentials credentials = EthPrivateKey.fromHex(privateKey);
         final address = await credentials.extractAddress();
         print(address);
-        final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
-        var transfer = contract.function('transfer');
-        await client.sendTransaction(
-          credentials,
-          Transaction.callContract(
-              gasPrice: EtherAmount.inWei(BigInt.from(10000000000)),
-              maxGas: 4000000,
-              contract: contract,
-              function: transfer,
-              parameters: [EthereumAddress.fromHex(recipient),BigInt.from(amount*1000)*BigInt.from(1000000000000000)]
-          ),
-          chainId: 3,
+        String recpAddress =await fetchAddress(recipient);
+          print(recpAddress);
+          final contract  =  DeployedContract(ContractAbi.fromJson(abi, "StandardTOken"),EthereumAddress.fromHex(moonRopsten));
+          var transfer = contract.function('transfer');
+          await client.sendTransaction(
+            credentials,
+            Transaction.callContract(
+                gasPrice: EtherAmount.inWei(BigInt.from(10000000000)),
+                maxGas: 4000000,
+                contract: contract,
+                function: transfer,
+                parameters: [EthereumAddress.fromHex(recpAddress),BigInt.from(amount*1000)*BigInt.from(1000000000000000)]
+            ),
+            chainId: 3,
 
-        ).then((hash)async {
-          print(BigInt.from(amount)*BigInt.from(1000000000000000000));
-          print("tx hash: "+ hash);
-          await client.dispose().then((val){
-            prefs.setString("hash", hash);
-            prefs.setBool("transacting", true);
-            return hash;
+          ).then((hash)async {
+            print(BigInt.from(amount)*BigInt.from(1000000000000000000));
+            print("tx hash: "+ hash);
+            await client.dispose().then((val){
+              prefs.setString("hash", hash);
+              prefs.setBool("transacting", true);
+              return hash;
+            });
           });
-        });
 
       });
     });
 
 
   }
+  Future<bool> mapNumber (String phone) async {
+    var apiUrl = "https://testnet2.matic.network";
+    final client = Web3Client(apiUrl, http.Client(), enableBackgroundIsolate: true);
+    rootBundle.loadString('assets/json/meWallet.json').then((abi) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String privateKey = prefs.getString("privateKey");
+      var bytes = utf8.encode(phone);
+      var digest = sha256.convert(bytes);
+      print(digest.toString());
+      Credentials credentials = EthPrivateKey.fromHex(privateKey);
+      final address = await credentials.extractAddress();
+      print(address);
+      final contract =
+      DeployedContract(ContractAbi.fromJson(abi, 'payDapp'), EthereumAddress.fromHex('0x98B4b69fAA809f246631d192E9C1644dEBb370BA'));
+      var mapp= contract.function('setNo');
+      final addr = await client.sendTransaction(
+        credentials,
+        Transaction.callContract(contract: contract, function: mapp, parameters: [digest.toString()],gasPrice: EtherAmount.inWei(BigInt.from(0))),
+        chainId: 8995,
+        fetchChainIdFromNetworkId: false,
+      );
+      await client.dispose();
+      return true;
+    });
+  }
+  Future<String > fetchAddress(String phone) async{
+    EthereumAddress rAddress;
+    var apiUrl = "https://testnet2.matic.network";
+    final client = Web3Client(apiUrl, http.Client(), enableBackgroundIsolate: true);
+    await rootBundle.loadString('assets/json/meWallet.json').then((abi) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String privateKey = prefs.getString("privateKey");
+      var bytes = utf8.encode(phone);
+      var digest = sha256.convert(bytes);
+      print(digest.toString());
+      Credentials credentials = EthPrivateKey.fromHex(privateKey);
+      final address = await credentials.extractAddress();
+      print(address);
+      final contract =
+      DeployedContract(ContractAbi.fromJson(abi, 'payDapp'), EthereumAddress.fromHex('0x98B4b69fAA809f246631d192E9C1644dEBb370BA'));
+      var mapp= contract.function('getNo');
+      var addr = await client.call(contract: contract, function: mapp, params: [digest.toString()]);
+      rAddress= addr[0];
+      print(rAddress);
+    });
+    await client.dispose();
+    return rAddress.toString();
+  }
+
 }

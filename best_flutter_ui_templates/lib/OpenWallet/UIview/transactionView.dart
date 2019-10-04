@@ -225,7 +225,7 @@ class _TransactionViewState extends State<TransactionView> {
     }
     if(json["message"]=="NOTOK"||json["result"]["Status"]=="0"){
       setState(() {
-        print("transaction mereged");
+        print("Transaction failed");
         transacting =false;
         err= true;
       });

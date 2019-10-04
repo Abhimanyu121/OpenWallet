@@ -1,30 +1,27 @@
 import 'package:best_flutter_ui_templates/wrappers/ScannerWrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/MaticTransactions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import '../walletTheme.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/EthereumTransactions.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/Deposit.dart';
-class AreaListView extends StatefulWidget {
+import '../Screens/Deposit.dart';
+class DepositList extends StatefulWidget {
   final AnimationController mainScreenAnimationController;
   final Animation mainScreenAnimation;
 
-  const AreaListView(
+  const DepositList(
       {Key key, this.mainScreenAnimationController, this.mainScreenAnimation})
       : super(key: key);
   @override
-  _AreaListViewState createState() => _AreaListViewState();
+  _DepositListState createState() => _DepositListState();
 }
 
-class _AreaListViewState extends State<AreaListView>
+class _DepositListState extends State<DepositList>
     with TickerProviderStateMixin {
 
   AnimationController animationController;
-  List<String> areaListData = [
-    "assets/images/eth.png",
-    "assets/images/matic.png",
-    "assets/images/transaction.png"
+  List<IconData> areaListData = [
+    Icons.send,
+    Icons.call_received
   ];
 
   @override
@@ -42,7 +39,7 @@ class _AreaListViewState extends State<AreaListView>
 
   @override
   Widget build(BuildContext context) {
-   // var dialog = showProgressDialog(context: context);
+    // var dialog = showProgressDialog(context: context);
     return AnimatedBuilder(
       animation: widget.mainScreenAnimationController,
       builder: (BuildContext context, Widget child) {
@@ -57,12 +54,12 @@ class _AreaListViewState extends State<AreaListView>
                 padding: const EdgeInsets.only(left: 8.0, right: 8),
                 child: GridView(
                   padding:
-                      EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+                  EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: List.generate(
                     areaListData.length,
-                    (index) {
+                        (index) {
                       var count = areaListData.length;
                       var animation = Tween(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
@@ -97,7 +94,7 @@ class _AreaListViewState extends State<AreaListView>
 }
 
 class AreaView extends StatefulWidget {
-  final String imagepath;
+  final IconData imagepath;
   final AnimationController animationController;
   final Animation animation;
 
@@ -162,25 +159,8 @@ class _AreaViewState extends State<AreaView> {
                         padding: EdgeInsets.only(top: 16, left: 16, right: 16),
                         child: FlatButton(
                             onPressed: ()async {
-                              Toast.show("Please wait ", context, duration: Toast.LENGTH_LONG);
-                              if (widget.imagepath=="assets/images/eth.png"){
-                                await _transactionStatus().then((val){
 
-                                  if(transacting){
-
-                                       Toast.show("Another Transaction is in progress",context, duration: Toast.LENGTH_LONG);
-                                  }
-                                  else{
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => EthereumTransactions()),
-                                      );
-
-                                  }
-                                });
-                                //push to ethereum page
-
-                              }else if (widget.imagepath=="assets/images/transaction.png"){
+                              if (widget.imagepath==Icons.send){
                                 await _transactionStatus().then((val){
 
                                   if(transacting){
@@ -195,20 +175,16 @@ class _AreaViewState extends State<AreaView> {
 
                                   }
                                 });
+                                //push to ethereum page
+
                               }
                               else{
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => MaticTransactions()),
-                                );
+                                Toast.show("Feature temporarily Unavailable", context);
                               }
                             },
-                            child:widget.imagepath=="assets/images/transaction.png"?Column(
-                              children: <Widget>[
-                                Image.asset(widget.imagepath),
-                                Text("Deposit")
-                              ],
-                            ): Image.asset(widget.imagepath)
+                            child: Icon(
+                              widget.imagepath
+                            )
                         ),
                       ),
                     ],
@@ -291,3 +267,4 @@ class _AreaViewState extends State<AreaView> {
     }
   }
 }
+//principal@aryacollege.in

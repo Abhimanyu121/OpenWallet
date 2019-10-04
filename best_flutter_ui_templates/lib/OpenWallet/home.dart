@@ -1,7 +1,7 @@
 import 'package:best_flutter_ui_templates/OpenWallet/models/tabIconData.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Transactions/transaction.dart';
 import 'package:flutter/material.dart';
-import 'bottomNavigationView/bottomBarView.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/cardAndKyc.dart';
 import 'walletTheme.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Screens/cards.dart';
 import 'Screens/Wallets.dart';
@@ -44,8 +44,8 @@ class _HomeState extends State<Home>
         AnimationController(duration: Duration(milliseconds: 600), vsync: this);
     wallets = new  WalletsScreen(animationController: animationController);
     deposit = new  TransactionsScreen(animationController: animationController);
-    fiatCrypto = new  BuyandSell(animationController: animationController,);
-    info = new BuyandSell(animationController: animationController,);
+    fiatCrypto = new  CardScreen(animationController: animationController,);
+    info = new CardScreen(animationController: animationController,);
     transact = new  BuyandSell(animationController: animationController,);
 
     super.initState();

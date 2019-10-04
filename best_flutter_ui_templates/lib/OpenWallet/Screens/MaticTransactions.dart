@@ -77,10 +77,11 @@ class ReceiveUi extends State<MaticTransactions>{
         ),
         Center(
           child: TextFormField(
+            keyboardType: TextInputType.number,
             controller: recipient,
-            validator:(val) => val.length!=64&&val.length!=0?"Invalid address":null,
+            validator:(val) => val.length!=10&&val.length!=0?"Invalid address":null,
             decoration: InputDecoration(
-              hintText: 'Address',
+              hintText: 'Enter Recipeint Phone Number',
               contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
             ),
