@@ -33,6 +33,14 @@ class ScannerWrapper{
     print(js);
     return js;
   }
+  Future<dynamic> getTxList(String address)async {
+    var url = "http://api-ropsten.etherscan.io/api?module=account&action=txlist&address="+address+"&startblock=0&endblock=99999999&sort=asc&apikey=ZE2QGS32E2DTA2P37IXQG9Z5DT81QQV5C8";
+    var resp= await http.get(url);
+    var js= jsonDecode(resp.body)["result"] as List;
+    print(resp.body);
+    print(js);
+    return js;
+  }
 
 
 }

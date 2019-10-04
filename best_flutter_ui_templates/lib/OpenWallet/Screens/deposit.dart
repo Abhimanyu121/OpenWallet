@@ -53,10 +53,10 @@ class ReceiveUi extends State<Deposit>{
 
     // TODO: implement build
     return Scaffold(
-      body: _depositUi(context),
+      body: _depositUi(),
     );
   }
-  _depositUi(context){
+  _depositUi(){
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -101,7 +101,7 @@ class ReceiveUi extends State<Deposit>{
         SizedBox(
           height: 25,
         ),
-        !deposit?Text(
+        approve?Text(
           "Some approvals",
           style: TextStyle(
             fontSize: 24,
@@ -110,7 +110,89 @@ class ReceiveUi extends State<Deposit>{
             letterSpacing: 0.4,
           ),
         ):SizedBox(),
-        approve?_buttonApprove(context):(allow?_buttonAllow(context):(increase?_buttonIncrease(context):_buttonDeposit(context)))
+        //approve?_buttonApprove(context):(allow?_buttonAllow(context):(increase?_buttonIncrease(context):_buttonDeposit(context)))
+        approve?Padding(
+          padding: EdgeInsets.symmetric(vertical: 16.0),
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            onPressed: () async {
+              setState(() {
+                loading =true;
+              });
+              EthWrapper wrapper = new EthWrapper();
+              await wrapper.checkEth().then((val){
+                BigInt wei = val;
+                if(wei<BigInt.from(1000000000000000)){
+                  _asyncConfirmDialog(context);
+                }
+                else{
+                  _approve();
+                }
+              });
+
+              setState(() {
+                loading =false;
+              });
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  Home()), (Route<dynamic> route) => false);
+            },
+            padding: EdgeInsets.all(12),
+            color: Colors.blueAccent,
+            child: loading
+                ? SpinKitCircle(size: 10, color: Colors.black,)
+                : Text('Approve Stable Coin', style: TextStyle(color: Colors.white)),
+          ),
+        ):Column(
+          children: <Widget>[
+            TextFormField(
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: 'Amount',
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
+              ),
+              controller: amount,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                onPressed: () async {
+                  setState(() {
+                    loading =true;
+                  });
+                  EthWrapper wrapper = new EthWrapper();
+                  await wrapper.checkEth().then((val){
+                    BigInt wei = val;
+                    if(wei<BigInt.from(1000000000000000)){
+                      _asyncConfirmDialog(context);
+                    }
+                    else{
+                      _deposit(amount.text);
+                    }
+                  });
+
+                  setState(() {
+                    loading =false;
+                  });
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                      Home()), (Route<dynamic> route) => false);
+                },
+                padding: EdgeInsets.all(12),
+                color: Colors.blueAccent,
+                child: loading
+                    ? SpinKitCircle(size: 10, color: Colors.black,)
+                    : Text('Deposit', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+          ],
+        ),
+
       ],
     );
 
@@ -121,16 +203,16 @@ class ReceiveUi extends State<Deposit>{
        wrapper.approveToken(99999);
       Navigator.pop(context);
   }
-  _allow() {
-      EthWrapper wrapper = new EthWrapper();
-        wrapper.allowanceToken();
-      Navigator.pop(context);
-  }
-  _increaseAllowance() {
-      EthWrapper wrapper = new EthWrapper();
-       wrapper.incAllowanceToken();
-      Navigator.pop(context);
-  }
+//  _allow() {
+//      EthWrapper wrapper = new EthWrapper();
+//        wrapper.allowanceToken();
+//      Navigator.pop(context);
+//  }
+//  _increaseAllowance() {
+//      EthWrapper wrapper = new EthWrapper();
+//       wrapper.incAllowanceToken();
+//      Navigator.pop(context);
+//  }
   _deposit(amount) {
     EthWrapper wrapper = new EthWrapper();
     wrapper.depositERC20(double.parse(amount));
@@ -214,167 +296,6 @@ class ReceiveUi extends State<Deposit>{
       },
     );
   }
-
-
-  _buttonApprove(context){
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        onPressed: () async {
-          setState(() {
-            loading =true;
-          });
-          EthWrapper wrapper = new EthWrapper();
-          await wrapper.checkEth().then((val){
-            BigInt wei = val;
-            if(wei<BigInt.from(1000000000000000)){
-              _asyncConfirmDialog(context);
-            }
-            else{
-               _approve();
-            }
-          });
-
-          setState(() {
-            loading =false;
-          });
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-              Home()), (Route<dynamic> route) => false);
-        },
-        padding: EdgeInsets.all(12),
-        color: Colors.blueAccent,
-        child: loading
-            ? SpinKitCircle(size: 10, color: Colors.black,)
-            : Text('Approve Stable Coin', style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
-  _buttonIncrease(context){
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        onPressed: () async {
-          setState(() {
-            loading =true;
-          });
-          EthWrapper wrapper = new EthWrapper();
-          await wrapper.checkEth().then((val){
-            BigInt wei = val;
-            if(wei<BigInt.from(1000000000000000)){
-              _asyncConfirmDialog(context);
-            }
-            else{
-             _increaseAllowance();
-            }
-          });
-
-          setState(() {
-            loading =false;
-          });
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-              Home()), (Route<dynamic> route) => false);
-        },
-        padding: EdgeInsets.all(12),
-        color: Colors.blueAccent,
-        child: loading
-            ? SpinKitCircle(size: 10, color: Colors.black,)
-            : Text('Increase allowance', style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
-  _buttonAllow(context){
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        onPressed: () async {
-          setState(() {
-            loading =true;
-          });
-          EthWrapper wrapper = new EthWrapper();
-          await wrapper.checkEth().then((val){
-            BigInt wei = val;
-            if(wei<BigInt.from(1000000000000000)){
-              _asyncConfirmDialog(context);
-            }
-            else{
-             _allow();
-            }
-          });
-
-          setState(() {
-            loading =false;
-          });
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-              Home()), (Route<dynamic> route) => false);
-        },
-        padding: EdgeInsets.all(12),
-        color: Colors.blueAccent,
-        child: loading
-            ? SpinKitCircle(size: 10, color: Colors.black,)
-            : Text('Allow Stable Coin', style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
-  _buttonDeposit(context){
-    var amount = new TextEditingController();
-    return Column(
-      children: <Widget>[
-        TextFormField(
-        keyboardType: TextInputType.number,
-          textAlign: TextAlign.center,
-          decoration: InputDecoration(
-            hintText: 'Amount',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
-          ),
-          controller: amount,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 16.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
-            ),
-            onPressed: () async {
-              setState(() {
-                loading =true;
-              });
-              EthWrapper wrapper = new EthWrapper();
-              await wrapper.checkEth().then((val){
-                BigInt wei = val;
-                if(wei<BigInt.from(1000000000000000)){
-                  _asyncConfirmDialog(context);
-                }
-                else{
-                  _deposit(amount.text);
-                }
-              });
-
-              setState(() {
-                loading =false;
-              });
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                  Home()), (Route<dynamic> route) => false);
-            },
-            padding: EdgeInsets.all(12),
-            color: Colors.blueAccent,
-            child: loading
-                ? SpinKitCircle(size: 10, color: Colors.black,)
-                : Text('Deposit', style: TextStyle(color: Colors.white)),
-          ),
-        ),
-      ],
-    );
-  }
   _kycButton(sc){
     return Center(
       child: Column(
@@ -405,4 +326,165 @@ class ReceiveUi extends State<Deposit>{
       ),
     );
   }
+
+//  _buttonApprove(context){
+//    return Padding(
+//      padding: EdgeInsets.symmetric(vertical: 16.0),
+//      child: RaisedButton(
+//        shape: RoundedRectangleBorder(
+//          borderRadius: BorderRadius.circular(24),
+//        ),
+//        onPressed: () async {
+//          setState(() {
+//            loading =true;
+//          });
+//          EthWrapper wrapper = new EthWrapper();
+//          await wrapper.checkEth().then((val){
+//            BigInt wei = val;
+//            if(wei<BigInt.from(1000000000000000)){
+//              _asyncConfirmDialog(context);
+//            }
+//            else{
+//               _approve();
+//            }
+//          });
+//
+//          setState(() {
+//            loading =false;
+//          });
+//          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+//              Home()), (Route<dynamic> route) => false);
+//        },
+//        padding: EdgeInsets.all(12),
+//        color: Colors.blueAccent,
+//        child: loading
+//            ? SpinKitCircle(size: 10, color: Colors.black,)
+//            : Text('Approve Stable Coin', style: TextStyle(color: Colors.white)),
+//      ),
+//    );
+//  }
+//  _buttonIncrease(context){
+//    return Padding(
+//      padding: EdgeInsets.symmetric(vertical: 16.0),
+//      child: RaisedButton(
+//        shape: RoundedRectangleBorder(
+//          borderRadius: BorderRadius.circular(24),
+//        ),
+//        onPressed: () async {
+//          setState(() {
+//            loading =true;
+//          });
+//          EthWrapper wrapper = new EthWrapper();
+//          await wrapper.checkEth().then((val){
+//            BigInt wei = val;
+//            if(wei<BigInt.from(1000000000000000)){
+//              _asyncConfirmDialog(context);
+//            }
+//            else{
+//             _increaseAllowance();
+//            }
+//          });
+//
+//          setState(() {
+//            loading =false;
+//          });
+//          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+//              Home()), (Route<dynamic> route) => false);
+//        },
+//        padding: EdgeInsets.all(12),
+//        color: Colors.blueAccent,
+//        child: loading
+//            ? SpinKitCircle(size: 10, color: Colors.black,)
+//            : Text('Increase allowance', style: TextStyle(color: Colors.white)),
+//      ),
+//    );
+//  }
+//  _buttonAllow(context){
+//    return Padding(
+//      padding: EdgeInsets.symmetric(vertical: 16.0),
+//      child: RaisedButton(
+//        shape: RoundedRectangleBorder(
+//          borderRadius: BorderRadius.circular(24),
+//        ),
+//        onPressed: () async {
+//          setState(() {
+//            loading =true;
+//          });
+//          EthWrapper wrapper = new EthWrapper();
+//          await wrapper.checkEth().then((val){
+//            BigInt wei = val;
+//            if(wei<BigInt.from(1000000000000000)){
+//              _asyncConfirmDialog(context);
+//            }
+//            else{
+//             _allow();
+//            }
+//          });
+//
+//          setState(() {
+//            loading =false;
+//          });
+//          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+//              Home()), (Route<dynamic> route) => false);
+//        },
+//        padding: EdgeInsets.all(12),
+//        color: Colors.blueAccent,
+//        child: loading
+//            ? SpinKitCircle(size: 10, color: Colors.black,)
+//            : Text('Allow Stable Coin', style: TextStyle(color: Colors.white)),
+//      ),
+//    );
+//  }
+//  _buttonDeposit(context){
+//    var amount = new TextEditingController();
+//    return Column(
+//      children: <Widget>[
+//        TextFormField(
+//        keyboardType: TextInputType.number,
+//          textAlign: TextAlign.center,
+//          decoration: InputDecoration(
+//            hintText: 'Amount',
+//            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+//            border: OutlineInputBorder(borderRadius: BorderRadius.circular(3.0)),
+//          ),
+//          controller: amount,
+//        ),
+//        Padding(
+//          padding: EdgeInsets.symmetric(vertical: 16.0),
+//          child: RaisedButton(
+//            shape: RoundedRectangleBorder(
+//              borderRadius: BorderRadius.circular(24),
+//            ),
+//            onPressed: () async {
+//              setState(() {
+//                loading =true;
+//              });
+//              EthWrapper wrapper = new EthWrapper();
+//              await wrapper.checkEth().then((val){
+//                BigInt wei = val;
+//                if(wei<BigInt.from(1000000000000000)){
+//                  _asyncConfirmDialog(context);
+//                }
+//                else{
+//                  _deposit(amount.text);
+//                }
+//              });
+//
+//              setState(() {
+//                loading =false;
+//              });
+//              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+//                  Home()), (Route<dynamic> route) => false);
+//            },
+//            padding: EdgeInsets.all(12),
+//            color: Colors.blueAccent,
+//            child: loading
+//                ? SpinKitCircle(size: 10, color: Colors.black,)
+//                : Text('Deposit', style: TextStyle(color: Colors.white)),
+//          ),
+//        ),
+//      ],
+//    );
+//  }
+
 }

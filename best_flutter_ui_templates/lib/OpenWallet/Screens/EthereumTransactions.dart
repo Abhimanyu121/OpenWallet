@@ -216,7 +216,9 @@ class ReceiveUi extends State<EthereumTransactions>{
                 MoonPayWrapper wrapper = new MoonPayWrapper();
                 List ls = await wrapper.getCardList(jwt);
                 await wrapper.addEth(jwt, address, ls[0]["id"]).then((val){
-
+                  setState(() {
+                    eth =false;
+                  });
                   Navigator.of(context).pop(true);
                 });
 

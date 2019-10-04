@@ -1,32 +1,25 @@
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/extraTip.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/balanceCard.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
 import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//Screens/chainList.dart';
+import 'AddressCard.dart';
+import 'PrivateCard.dart';
+import 'InfoTip.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'loader.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
 
-class WalletsScreen extends StatefulWidget {
+class InformationScreen extends StatefulWidget {
   final AnimationController animationController;
 
-  const WalletsScreen({Key key, this.animationController}) : super(key: key);
+  const InformationScreen({Key key, this.animationController}) : super(key: key);
   @override
-  _WalletsScreenState createState() => _WalletsScreenState();
+  _InformationScreenState createState() => _InformationScreenState();
 }
 
-class _WalletsScreenState extends State<WalletsScreen>with
+class _InformationScreenState extends State<InformationScreen>with
     AutomaticKeepAliveClientMixin {
   //with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
-  int loading=0 ;
-  String balanceRopsten="";
-  String balanceMatic = "";
-  int maticCount =0;
-  int ropstenCount=0;
-  String phone="";
+
   List<Widget> listViews = List<Widget>();
   var scrollController = ScrollController();
   double topBarOpacity = 0.0;
@@ -37,14 +30,6 @@ class _WalletsScreenState extends State<WalletsScreen>with
     topBarAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
         parent: widget.animationController,
         curve: Interval(0, 0.5, curve: Curves.fastOutSlowIn)));
-    _fetchBalance().then((val){
-      _fetchCount().then((val){
-        _fetchPhone().then((val){
-          addAllListData();
-          print("load ="+loading.toString());
-        });
-      });
-    });
 
 
     scrollController.addListener(() {
@@ -69,42 +54,16 @@ class _WalletsScreenState extends State<WalletsScreen>with
         }
       }
     });
+    addAllListData();
     super.initState();
   }
-  _fetchPhone()async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String str= prefs.getString("phoneNo");
-    setState(() {
-      phone= str;
-    });
-    return str;
-  }
-  _fetchCount() async {
-    EthWrapper wrapper = new EthWrapper();
-    int ropsten = await wrapper.ropstenTransactionNumber();
-    setState(() {
-      ropstenCount= ropsten;
-      loading= loading+1;
-    });
-  }
-  _fetchBalance()async{
-    EthWrapper wrapper = new EthWrapper();
 
-    String matic= await  wrapper.checkBalanceMatic();
-    String ropsten = await wrapper.checkBalanceRopsten();
-    setState(() {
-      balanceRopsten =ropsten;
-      balanceMatic = matic;
-      loading= loading+1;
-    });
-    return true;
-  }
   void addAllListData() {
     var count = 9;
 
     listViews.add(
       TitleView(
-        titleTxt: 'Wallet Balances',
+        titleTxt: 'Public Address',
         //subTxt: 'Details',
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
@@ -114,52 +73,35 @@ class _WalletsScreenState extends State<WalletsScreen>with
       ),
     );
     listViews.add(
-      BalanceCardView(
+      AddressCard(
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
             Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
-        balanceMatic: balanceMatic,
-        balanceRopsten: balanceRopsten,
-        phone: phone,
       ),
     );
     listViews.add(
       TitleView(
-        titleTxt: 'Transaction History',
-        //subTxt: 'Trnsactions',
+        titleTxt: 'Private Key',
+        //subTxt: 'Details',
         animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-            Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
+            Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController,
+      ),
+    );
+    listViews.add(
+      PrivateCard(
+        animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController,
+            curve:
+            Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
 
-    listViews.add(
-      ChainListView(
-        mainScreenAnimation: Tween(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(
-                parent: widget.animationController,
-                curve: Interval((1 / count) * 3, 1.0,
-                    curve: Curves.fastOutSlowIn))),
-        mainScreenAnimationController: widget.animationController,
-        maticCount: maticCount,
-        ropstenCount: ropstenCount,
-      ),
-    );
-
-    listViews.add(
-      TitleView(
-        titleTxt: 'Extras',
-        animation: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController,
-            curve:
-            Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController,
-      ),
-    );
 
     listViews.add(
       ExtraTip(
@@ -186,7 +128,7 @@ class _WalletsScreenState extends State<WalletsScreen>with
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
-            loading!=2? Loader(): getMainListViewUI(),
+            getMainListViewUI(),
             getAppBarUI(),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,

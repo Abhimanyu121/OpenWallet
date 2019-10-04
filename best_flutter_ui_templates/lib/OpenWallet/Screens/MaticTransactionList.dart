@@ -31,7 +31,7 @@ class MaticTransactionsLIstState extends State<MaticTransactionsList>{
   }
   _getTransactions() async{
     ScannerWrapper wrapper = new ScannerWrapper();
-    var js =  await wrapper.getTransactions();
+    var js =  await wrapper.maticTransactions();
     setState((){
       json = js;
       loading =loading +1;
@@ -84,7 +84,7 @@ class MaticTransactionsLIstState extends State<MaticTransactionsList>{
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(
-                        json[position]["from"]==address?Icons.call_made:Icons.call_received,
+                        json[position]["from"]=="0x000000000000000000000000"+address.substring(2).toLowerCase()?Icons.call_made:Icons.call_received,
                       ),
                     ),
                     Padding(
@@ -101,7 +101,7 @@ class MaticTransactionsLIstState extends State<MaticTransactionsList>{
                               width:c_width,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
-                                child: Text(json[position]["from"],textAlign: TextAlign.left),
+                                child: Text(json[position]["topics"][1],textAlign: TextAlign.left),
                               ),
                             ),
                           ),
@@ -115,15 +115,15 @@ class MaticTransactionsLIstState extends State<MaticTransactionsList>{
                               width:c_width,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
-                                child: Text(json[position]["to"],textAlign: TextAlign.left),
+                                child: Text(json[position]["topics"][2],textAlign: TextAlign.left),
                               ),
                             ),
                           ),
-                          Text("Amount:"),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
-                            child: Text((int.parse(json[position]["value"])/1000000000000000000).toString()),
-                          )
+//                          Text("Amount:"),
+//                          Padding(
+//                            padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
+//                            child: Text((int.parse(json[position]["value"])/1000000000000000000).toString()),
+//                          )
                         ],
                       ),
                     )

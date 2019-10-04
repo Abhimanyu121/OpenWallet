@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Screens/cardAndKyc.dart';
 import 'walletTheme.dart';
 import 'package:best_flutter_ui_templates/OpenWallet/Screens/cards.dart';
+import 'package:best_flutter_ui_templates/OpenWallet/Screens/ListTransactions.dart';
 import 'Screens/Wallets.dart';
-
+import 'Screens/Information.dart';
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -45,8 +46,8 @@ class _HomeState extends State<Home>
     wallets = new  WalletsScreen(animationController: animationController);
     deposit = new  TransactionsScreen(animationController: animationController);
     fiatCrypto = new  CardScreen(animationController: animationController,);
-    info = new CardScreen(animationController: animationController,);
-    transact = new  BuyandSell(animationController: animationController,);
+    info = new InformationScreen(animationController: animationController,);
+    transact = new  ListTransactions(animationController: animationController,);
 
     super.initState();
   }
