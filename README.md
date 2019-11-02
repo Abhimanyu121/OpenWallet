@@ -5,6 +5,8 @@
 ## Aim
 Open wallet is an open source wallet with aim to bridge the gap between cryptocurrency world and common masses, it does so by reducing the complications of blockchain world and providing fiat like 
 environment to the people in a highly secure way.
+## Achievements
+This project had been selected in Consensys labs relay program, it has won Consensys bounty of 10ETH (1800 USD)
 ## Description
 Open wallet currently have three layers of technology to make the user experience a lot better and we  have a lot of others in roadmap
 1. Ropsten -In testing phase wallet uses ropsten as public ledger
@@ -26,15 +28,16 @@ Open wallet currently have three layers of technology to make the user experienc
 - [ ] Using password protected qr code instead of mnemonics.
 - [ ] Withdrawal to fiat(Can not be added before moving to main net.
 
+## Screenshots
+|<img src="devconss/1.PNG" width="400">|<img src="devconss/2.PNG" width="400">
+|<img src="devconss/3.PNG" width="400">|<img src="devconss/4.PNG" width="400">
+|<img src="devconss/5.PNG" width="400">|<img src="devconss/6.PNG" width="400">
+|<img src="devconss/6.PNG" width="400">|<img src="devconss/7.PNG" width="400">
+
 ## Our motivation behind our wallet application and  each feature
 
 |<img src="responses/1.PNG" width="400">|<img src="responses/2.PNG" width="400">
 |<img src="responses/3.PNG" width="400">|<img src="responses/4.PNG" width="400">
 |<img src="responses/5.PNG" width="400">|<img src="responses/6.PNG" width="400">
 
-## Instructions to use 
-1. After installing application Enter any phone number(OTP verification will be added in production), after this you can either put your pirvate key or generate new.
-2. Go to info tab to get your newly generated address.
-3. You can manually add eth or transfer moon tokens to the address or go to middle tab to perform kyc and add cards.
-4. You can buy DAI(Moon token) using Moonpay interface.
-5. In transactions tab you can transact using Main ropsten chain or matic chain after depositing tokens to it.
+
