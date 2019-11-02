@@ -29,10 +29,10 @@ Open wallet currently have three layers of technology to make the user experienc
 - [ ] Withdrawal to fiat(Can not be added before moving to main net.
 
 ## Screenshots
-|<img src="devconss/1.PNG" width="400">|<img src="devconss/2.PNG" width="400">
-|<img src="devconss/3.PNG" width="400">|<img src="devconss/4.PNG" width="400">
-|<img src="devconss/5.PNG" width="400">|<img src="devconss/6.PNG" width="400">
-|<img src="devconss/6.PNG" width="400">|<img src="devconss/7.PNG" width="400">
+|<img src="devconss/1.jpg" width="400">|<img src="devconss/2.jpg" width="400">
+|<img src="devconss/3.jpg" width="400">|<img src="devconss/4.jpg" width="400">
+|<img src="devconss/5.jpg" width="400">|<img src="devconss/6.jpg" width="400">
+|<img src="devconss/6.jpg" width="400">|<img src="devconss/7.jpg" width="400">
 
 ## Our motivation behind our wallet application and  each feature
 
