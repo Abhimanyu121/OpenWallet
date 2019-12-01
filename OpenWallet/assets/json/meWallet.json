@@ -1,0 +1,38 @@
+[
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "phone",
+        "type": "string"
+      }
+    ],
+    "name": "setNo",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "phone",
+        "type": "string"
+      }
+    ],
+    "name": "getNo",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
