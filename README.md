@@ -1,5 +1,5 @@
 # OpenWallet
-![Logo](best_flutter_ui_templates/assets/images/trellis.png)</br>
+![Logo](OpenWallet/assets/images/trellis.png)</br>
 **Check Releases for apk.**</br>
 [Releases](https://github.com/Abhimanyu121/OpenWallet/releases/tag/alpha1)
 ## Aim
