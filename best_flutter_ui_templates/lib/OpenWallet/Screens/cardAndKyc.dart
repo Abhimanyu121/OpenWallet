@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
+import 'package:OpenWallet/OpenWallet//UIview/titleView.dart';
+import 'package:OpenWallet/OpenWallet//walletTheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'loader.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/UIview/Card_widget.dart';
+import 'package:OpenWallet/OpenWallet/UIview/Card_widget.dart';
 import 'login.dart';
 import 'package:toast/toast.dart';
-import 'package:best_flutter_ui_templates/wrappers/moonPayWrapper.dart';
+import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 class CardScreen extends StatefulWidget {
   final AnimationController animationController;
 

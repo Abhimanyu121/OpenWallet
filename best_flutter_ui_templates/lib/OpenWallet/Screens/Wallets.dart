@@ -1,13 +1,13 @@
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/extraTip.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/balanceCard.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//Screens/chainList.dart';
+import 'package:OpenWallet/OpenWallet//UIview/extraTip.dart';
+import 'package:OpenWallet/OpenWallet//UIview/balanceCard.dart';
+import 'package:OpenWallet/OpenWallet//UIview/titleView.dart';
+import 'package:OpenWallet/OpenWallet//walletTheme.dart';
+import 'package:OpenWallet/OpenWallet//Screens/chainList.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'loader.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
 import 'dart:async';
 class WalletsScreen extends StatefulWidget {
   final AnimationController animationController;

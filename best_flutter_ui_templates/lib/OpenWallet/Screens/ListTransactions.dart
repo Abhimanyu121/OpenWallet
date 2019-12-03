@@ -1,10 +1,10 @@
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//walletTheme.dart';
-import 'package:best_flutter_ui_templates/wrappers/ScannerWrapper.dart';
+import 'package:OpenWallet/OpenWallet//UIview/titleView.dart';
+import 'package:OpenWallet/OpenWallet//walletTheme.dart';
+import 'package:OpenWallet/wrappers/ScannerWrapper.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
 import 'package:toast/toast.dart';
 import 'loader.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

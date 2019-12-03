@@ -1,17 +1,18 @@
 import 'dart:io';
-import 'package:best_flutter_ui_templates/appTheme.dart';
+import 'package:OpenWallet/appTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/home.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/loader.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/newLogin.dart';
+import 'package:OpenWallet/OpenWallet/home.dart';
+import 'package:OpenWallet/OpenWallet/Screens/loader.dart';
+import 'package:OpenWallet/OpenWallet/Screens/newLogin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_progress_dialog/flutter_progress_dialog.dart';
 void main() {
-  SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-      .then((_) => runApp(new MyApp()));
+//  SystemChrome.setPreferredOrientations(
+//          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+//      .then((_) =>
   // runApp(new MyApp());
+  runApp(new MyApp());
 }
 class MyApp extends StatefulWidget{
   @override

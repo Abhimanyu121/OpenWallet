@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/wrappers/moonPayWrapper.dart';
+import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:toast/toast.dart';
 import 'package:flutter/services.dart';
-import 'package:best_flutter_ui_templates/wrappers/keyInterface.dart';
+import 'package:OpenWallet/wrappers/keyInterface.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
 import 'package:web3dart/web3dart.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//home.dart';
+import 'package:OpenWallet/OpenWallet//home.dart';
 class Login_email extends StatefulWidget{
   Login_email_ui createState() => new Login_email_ui();
 }

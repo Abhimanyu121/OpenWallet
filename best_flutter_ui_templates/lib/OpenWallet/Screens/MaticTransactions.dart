@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:toast/toast.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
 class MaticTransactions extends StatefulWidget{
   @override
   ReceiveUi createState()=> new ReceiveUi();

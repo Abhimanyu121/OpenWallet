@@ -1,4 +1,4 @@
-import 'package:best_flutter_ui_templates/wrappers/ScannerWrapper.dart';
+import 'package:OpenWallet/wrappers/ScannerWrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';

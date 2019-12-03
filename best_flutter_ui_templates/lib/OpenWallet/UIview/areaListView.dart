@@ -1,11 +1,11 @@
-import 'package:best_flutter_ui_templates/wrappers/ScannerWrapper.dart';
+import 'package:OpenWallet/wrappers/ScannerWrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/MaticTransactions.dart';
+import 'package:OpenWallet/OpenWallet/Screens/MaticTransactions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import '../walletTheme.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/EthereumTransactions.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/Deposit.dart';
+import 'package:OpenWallet/OpenWallet/Screens/EthereumTransactions.dart';
+import 'package:OpenWallet/OpenWallet/Screens/Deposit.dart';
 class AreaListView extends StatefulWidget {
   final AnimationController mainScreenAnimationController;
   final Animation mainScreenAnimation;

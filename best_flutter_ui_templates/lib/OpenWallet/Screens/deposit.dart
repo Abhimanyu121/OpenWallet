@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:toast/toast.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:best_flutter_ui_templates/wrappers/moonPayWrapper.dart';
+import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 import 'loader.dart';
 import 'login.dart';
 import '../home.dart';

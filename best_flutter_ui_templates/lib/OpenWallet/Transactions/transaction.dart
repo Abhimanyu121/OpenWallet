@@ -1,7 +1,7 @@
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/areaListView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/transactionTip.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/titleView.dart';
-import 'package:best_flutter_ui_templates/OpenWallet//UIview/transactionView.dart';
+import 'package:OpenWallet/OpenWallet/UIview/areaListView.dart';
+import 'package:OpenWallet/OpenWallet/UIview/transactionTip.dart';
+import 'package:OpenWallet/OpenWallet/UIview/titleView.dart';
+import 'package:OpenWallet/OpenWallet/UIview/transactionView.dart';
 import 'package:flutter/material.dart';
 import '../UIview/depositList.dart';
 import '../walletTheme.dart';

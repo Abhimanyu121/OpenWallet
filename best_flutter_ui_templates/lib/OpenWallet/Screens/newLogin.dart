@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
-import 'package:best_flutter_ui_templates/wrappers/keyInterface.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/keyInterface.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:toast/toast.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/home.dart';
+import 'package:OpenWallet/OpenWallet/home.dart';
 class newLogin extends StatefulWidget{
   newLoginState createState () => new newLoginState();
 }

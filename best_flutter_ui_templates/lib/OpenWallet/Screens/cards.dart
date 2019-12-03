@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/wrappers/moonPayWrapper.dart';
+import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/UIview/Card_widget.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/walletTheme.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/loader.dart';
+import 'package:OpenWallet/OpenWallet/UIview/Card_widget.dart';
+import 'package:OpenWallet/OpenWallet/walletTheme.dart';
+import 'package:OpenWallet/OpenWallet/Screens/loader.dart';
 class BuyandSell extends StatefulWidget {
   final AnimationController animationController;
   BuyandSell({this.animationController});

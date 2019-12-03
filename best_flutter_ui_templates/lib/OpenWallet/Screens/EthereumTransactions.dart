@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:toast/toast.dart';
-import 'package:best_flutter_ui_templates/wrappers/ethWrapper.dart';
-import 'package:best_flutter_ui_templates/wrappers/moonPayWrapper.dart';
+import 'package:OpenWallet/wrappers/ethWrapper.dart';
+import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/loader.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/login.dart';
+import 'package:OpenWallet/OpenWallet/Screens/loader.dart';
+import 'package:OpenWallet/OpenWallet/Screens/login.dart';
 class EthereumTransactions extends StatefulWidget{
   @override
   ReceiveUi createState()=> new ReceiveUi();

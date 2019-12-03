@@ -1,10 +1,10 @@
-import 'package:best_flutter_ui_templates/OpenWallet/models/tabIconData.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Transactions/transaction.dart';
+import 'package:OpenWallet/OpenWallet/models/tabIconData.dart';
+import 'package:OpenWallet/OpenWallet/Transactions/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/cardAndKyc.dart';
+import 'package:OpenWallet/OpenWallet/Screens/cardAndKyc.dart';
 import 'walletTheme.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/cards.dart';
-import 'package:best_flutter_ui_templates/OpenWallet/Screens/ListTransactions.dart';
+import 'package:OpenWallet/OpenWallet/Screens/cards.dart';
+import 'package:OpenWallet/OpenWallet/Screens/ListTransactions.dart';
 import 'Screens/Wallets.dart';
 import 'Screens/Information.dart';
 class Home extends StatefulWidget {
