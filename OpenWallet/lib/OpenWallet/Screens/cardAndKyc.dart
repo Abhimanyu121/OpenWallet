@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'loader.dart';
 import 'package:OpenWallet/OpenWallet/UIview/Card_widget.dart';
-import 'login.dart';
+import 'moonpayKyc.dart';
 import 'package:toast/toast.dart';
 import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 class CardScreen extends StatefulWidget {

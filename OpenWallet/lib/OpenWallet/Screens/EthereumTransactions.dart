@@ -5,7 +5,7 @@ import 'package:OpenWallet/wrappers/ethWrapper.dart';
 import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:OpenWallet/OpenWallet/Screens/loader.dart';
-import 'package:OpenWallet/OpenWallet/Screens/login.dart';
+import 'package:OpenWallet/OpenWallet/Screens/moonpayKyc.dart';
 class EthereumTransactions extends StatefulWidget{
   @override
   ReceiveUi createState()=> new ReceiveUi();

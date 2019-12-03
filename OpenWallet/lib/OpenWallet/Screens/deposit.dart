@@ -5,7 +5,7 @@ import 'package:OpenWallet/wrappers/ethWrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:OpenWallet/wrappers/moonPayWrapper.dart';
 import 'loader.dart';
-import 'login.dart';
+import 'moonpayKyc.dart';
 import '../home.dart';
 class Deposit extends StatefulWidget{
   @override
