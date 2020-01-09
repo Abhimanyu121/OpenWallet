@@ -2,6 +2,10 @@
 ![Logo](OpenWallet/assets/images/trellis.png)</br>
 **Check Releases for apk.**</br>
 [Releases](https://github.com/Abhimanyu121/OpenWallet/releases/tag/alpha1)
+## Use of Infura
+- Email id `abhimanyushekhawat17.as@gmail.com` </br>
+|<img src="devconss/Capture.PNG" width="400">
+- Address to recieve bounty prize `0x7092Fdbc448698461A3ae98488C35568f368e0AD`
 ## Aim
 Open wallet is an open source wallet with aim to bridge the gap between cryptocurrency world and common masses, it does so by reducing the complications of blockchain world and providing fiat like 
 environment to the people in a highly secure way.
