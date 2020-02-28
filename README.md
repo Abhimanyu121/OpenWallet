@@ -1,7 +1,7 @@
 # OpenWallet
 ![Logo](OpenWallet/assets/images/trellis.png)</br>
 **Check Releases for apk.**</br>
-[Releases](https://github.com/Abhimanyu121/OpenWallet/releases/tag/alpha1)
+[Releases](https://github.com/Abhimanyu121/OpenWallet/releases/download/Alpha2/app-release.apk)
 ## Use of Infura
 - Email id `abhimanyushekhawat17.as@gmail.com` </br>
 |<img src="devconss/Capture.PNG" width="400">
