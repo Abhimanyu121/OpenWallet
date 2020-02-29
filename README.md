@@ -31,6 +31,14 @@ Open wallet currently have three layers of technology to make the user experienc
 - [ ] Use of some login method like torus for easy accessiblity to the wallet.
 - [ ] Using password protected qr code instead of mnemonics.
 - [ ] Withdrawal to fiat(Can not be added before moving to main net.
+
+#### Side note 1: Application still have a lot of jagged edges, thus ping me on Telegram if you need some help. Telgram handle is @abhimanyu121
+#### Side note 2: Buying crypto from moonpay takes time(you will have to complete kyc), so you can copy address from information tab and send some ether and Moon tokens directly to the address.
+#### Side note 3: Application currently works only with moon tokens to demonstrate usablity of stable coins to gain user trust.
+#### Side note 4: Please refrain from inputing exceptional inputs as it is still under development.
+#### Side note 5: You can copy addresses and transaction hashes by tapping on them.
+#### Important Note: You can send transactions to phone number: 8824505978 , It is linked with 0x2Ee331840018465bD7Fe74aA4E442b9EA407fBBE  address, you can scan this address on ropsten etherscan. Address of Moon token 0x48b0c1d90c3058ab032c44ec52d98633587ee711
+
 ## Pitch Deck
 https://docs.google.com/presentation/d/1Myo8LKynOBocHy8WZS6cGNNxnzbyWDBkSaSSwz_2KeU/edit?usp=sharing
 ## Market Research
