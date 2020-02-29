@@ -33,6 +33,8 @@ Open wallet currently have three layers of technology to make the user experienc
 - [ ] Withdrawal to fiat(Can not be added before moving to main net.
 ## Pitch Deck
 https://docs.google.com/presentation/d/1Myo8LKynOBocHy8WZS6cGNNxnzbyWDBkSaSSwz_2KeU/edit?usp=sharing
+## Market Research
+https://docs.google.com/document/d/1xm8WNsQd0XCwPNxJAfxLSfZTyXjMIz36o3DcMoGmtiY/edit?usp=sharing
 ## Screenshots
 |<img src="devconss/1.jpg" width="400">|<img src="devconss/2.jpg" width="400">
 |<img src="devconss/3.jpg" width="400">|<img src="devconss/4.jpg" width="400">
