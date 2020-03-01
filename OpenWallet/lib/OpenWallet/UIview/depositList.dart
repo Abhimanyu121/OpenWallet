@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import '../walletTheme.dart';
-import '../Screens/Deposit.dart';
+import '../Screens/deposit.dart';
 class DepositList extends StatefulWidget {
   final AnimationController mainScreenAnimationController;
   final Animation mainScreenAnimation;
