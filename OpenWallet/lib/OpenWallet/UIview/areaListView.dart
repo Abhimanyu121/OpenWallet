@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import '../walletTheme.dart';
 import 'package:OpenWallet/OpenWallet/Screens/EthereumTransactions.dart';
-import 'package:OpenWallet/OpenWallet/Screens/Deposit.dart';
+import 'package:OpenWallet/OpenWallet/Screens/deposit.dart';
 class AreaListView extends StatefulWidget {
   final AnimationController mainScreenAnimationController;
   final Animation mainScreenAnimation;
