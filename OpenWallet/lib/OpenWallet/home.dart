@@ -3,7 +3,6 @@ import 'package:OpenWallet/OpenWallet/Transactions/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:OpenWallet/OpenWallet/Screens/cardAndKyc.dart';
 import 'walletTheme.dart';
-import 'package:OpenWallet/OpenWallet/Screens/cards.dart';
 import 'package:OpenWallet/OpenWallet/Screens/ListTransactions.dart';
 import 'Screens/Wallets.dart';
 import 'Screens/Information.dart';
@@ -33,9 +32,10 @@ class _HomeState extends State<Home>
   Widget transact = Container(
     color: WalletAppTheme.background,
   );
-
+  TabController _tabController;
   @override
   void initState() {
+    _tabController = new TabController(length: 5, vsync: this);
     tabIconsList.forEach((tab) {
       tab.isSelected = false;
     });
@@ -68,6 +68,7 @@ class _HomeState extends State<Home>
         floatingActionButton: FloatingActionButton(
           onPressed: (){setState(() {
             index=2;
+            _tabController.animateTo(2);
           });},
           backgroundColor: Colors.red,
           child:  Icon(
@@ -101,6 +102,7 @@ class _HomeState extends State<Home>
                     onPressed: () {
                       setState(() {
                         index=0;
+                        _tabController.animateTo(0);
                       });
                     },
                   ),
@@ -109,7 +111,8 @@ class _HomeState extends State<Home>
                     color: (index==1? Colors.red : Colors.blueGrey),
                     onPressed: () {
                       setState(() {
-                        index=1;
+                        index =1;
+                        _tabController.animateTo(1);
                       });
                     },
                   ),
@@ -119,6 +122,8 @@ class _HomeState extends State<Home>
                     onPressed: () {
                       setState(() {
                         index=3;
+                        _tabController.animateTo(3);
+
                       });
                     },
                   ),
@@ -128,6 +133,7 @@ class _HomeState extends State<Home>
                     onPressed: () {
                       setState(() {
                         index =4;
+                        _tabController.animateTo(4);
                       });
                     },
                   ),
@@ -139,7 +145,18 @@ class _HomeState extends State<Home>
 
         ),
         backgroundColor: Colors.transparent,
-        body: index ==0?wallets:(index==1?deposit:(index==2?fiatCrypto:(index==3?transact:info)))
+       // body: index ==0?wallets:(index==1?deposit:(index==2?fiatCrypto:(index==3?transact:info)))
+        body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            wallets,
+            deposit,
+            fiatCrypto,
+            transact,
+            info
+          ],
+          physics: NeverScrollableScrollPhysics(),
+        ),
       ),
     );
   }

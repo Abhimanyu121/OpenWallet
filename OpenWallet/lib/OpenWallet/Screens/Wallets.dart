@@ -17,8 +17,8 @@ class WalletsScreen extends StatefulWidget {
   _WalletsScreenState createState() => _WalletsScreenState();
 }
 
-class _WalletsScreenState extends State<WalletsScreen>with
-    AutomaticKeepAliveClientMixin {
+class _WalletsScreenState extends State<WalletsScreen>
+    with AutomaticKeepAliveClientMixin<WalletsScreen>  {
     //with TickerProviderStateMixin {
   Animation<double> topBarAnimation;
   int loading=0 ;

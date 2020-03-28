@@ -15,7 +15,7 @@ class TransactionsScreen extends StatefulWidget {
 }
 
 class _TransactionsScreenState extends State<TransactionsScreen>
-    with TickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin<TransactionsScreen>  {
 
   Animation<double> topBarAnimation;
   bool phone = false;
@@ -260,5 +260,9 @@ class _TransactionsScreenState extends State<TransactionsScreen>
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
 }
