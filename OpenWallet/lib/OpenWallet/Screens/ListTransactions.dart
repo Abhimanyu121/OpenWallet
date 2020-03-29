@@ -122,6 +122,7 @@ class _ListTransactionsState extends State<ListTransactions>with
           return SizedBox();
         } else {
           return ListView(
+            cacheExtent: 100,
             controller: scrollController,
             padding: EdgeInsets.only(
               top: AppBar().preferredSize.height +

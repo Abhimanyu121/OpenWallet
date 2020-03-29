@@ -147,6 +147,7 @@ class _InformationScreenState extends State<InformationScreen>with
           return SizedBox();
         } else {
           return ListView.builder(
+            cacheExtent: 100,
             controller: scrollController,
             padding: EdgeInsets.only(
               top: AppBar().preferredSize.height +

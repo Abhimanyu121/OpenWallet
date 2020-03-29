@@ -216,6 +216,7 @@ class _cardScreenState extends State<CardScreen>with
           return SizedBox();
         } else {
           return ListView.builder(
+            cacheExtent:100,
             controller: scrollController,
             padding: EdgeInsets.only(
               top: AppBar().preferredSize.height +

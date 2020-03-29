@@ -42,6 +42,7 @@ class MaticTransactionsLIstState extends State<MaticTransactionsList>{
     return Scaffold(
       backgroundColor: WalletAppTheme.background,
       body: ListView(
+        cacheExtent: 100,
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.only(
           left: 20,
@@ -74,6 +75,7 @@ class MaticTransactionsLIstState extends State<MaticTransactionsList>{
           ),
 
           loading!=2?whiteLoader():ListView.builder(
+            cacheExtent: 100,
             shrinkWrap: true,
             itemCount: json.length,
             itemBuilder: (context, position){

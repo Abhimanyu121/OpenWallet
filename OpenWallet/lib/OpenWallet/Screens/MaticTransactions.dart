@@ -28,6 +28,7 @@ class ReceiveUi extends State<MaticTransactions>{
       ),
     );
     return ListView(
+      cacheExtent: 100,
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.only(
         left: 9,

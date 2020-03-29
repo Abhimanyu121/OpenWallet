@@ -1,12 +1,9 @@
 import 'package:OpenWallet/main.dart';
 import 'package:flutter/material.dart';
 import '../walletTheme.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:toast/toast.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:OpenWallet/wrappers/ScannerWrapper.dart';
-
 class AddressCard extends StatefulWidget {
   final AnimationController animationController;
   final Animation animation;

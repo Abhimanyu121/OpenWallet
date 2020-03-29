@@ -34,6 +34,7 @@ class ReceiveUi extends State<EthereumTransactions>{
       ),
     );
     return ListView(
+      cacheExtent:100,
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.only(
         left: 9,

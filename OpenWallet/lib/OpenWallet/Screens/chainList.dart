@@ -55,6 +55,7 @@ class _ChainListViewState extends State<ChainListView>
               height: 216,
               width: double.infinity,
               child: ListView.builder(
+                cacheExtent:100,
                 padding: const EdgeInsets.only(
                     top: 0, bottom: 0, right: 16, left: 16),
                 itemCount: chainListData.length,

@@ -269,6 +269,7 @@ class _BuyandSellState extends State<BuyandSell>  with TickerProviderStateMixin 
 
   _cardList(){
     return ListView(
+        cacheExtent:100,
         primary: true,
         shrinkWrap: true,
         children: <Widget>[

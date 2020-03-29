@@ -66,6 +66,7 @@ class ReceiveUi extends State<Deposit>{
       ),
     );
     return ListView(
+      cacheExtent: 100,
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.only(
         left: 9,

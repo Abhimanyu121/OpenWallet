@@ -48,6 +48,7 @@ class EthereumTransactionsState extends State<EthereumTranscationsList>{
     return Scaffold(
       backgroundColor: WalletAppTheme.background,
       body: ListView(
+        cacheExtent: 100,
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.only(
           left: 20,
@@ -80,6 +81,7 @@ class EthereumTransactionsState extends State<EthereumTranscationsList>{
           ),
 
           loading!=2?whiteLoader():ListView.builder(
+            cacheExtent: 100,
             shrinkWrap: true,
             itemCount: json.length,
             itemBuilder: (context, position){
