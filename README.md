@@ -30,7 +30,7 @@ Open wallet currently have three layers of technology to make the user experienc
 - [ ] Passing of extra information with transaction using nuCypher(This feature  will take a lot of time because of complex nature of nuCypher proxy re-encryption).
 - [ ] Use of some login method like torus for easy accessiblity to the wallet.
 - [ ] Using password protected qr code instead of mnemonics.
-- [ ] Withdrawal to fiat(Can not be added before moving to main net.
+- [ ] Withdrawal to fiat(Can not be added before moving to main net...
 
 #### Side note 1: Application still have a lot of jagged edges, thus ping me on Telegram if you need some help. Telgram handle is @abhimanyu121
 #### Side note 2: Buying crypto from moonpay takes time(you will have to complete kyc), so you can copy address from information tab and send some ether and Moon tokens directly to the address.
