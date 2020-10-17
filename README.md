@@ -39,9 +39,9 @@ Open wallet currently have three layers of technology to make the user experienc
 #### Side note 5: You can copy addresses and transaction hashes by tapping on them.
 #### Important Note: You can send transactions to phone number: 8824505978 , It is linked with 0x2Ee331840018465bD7Fe74aA4E442b9EA407fBBE  address, you can scan this address on ropsten etherscan. Address of Moon token 0x48b0c1d90c3058ab032c44ec52d98633587ee711
 
-## Pitch Deck
+## Pitch deck
 https://docs.google.com/presentation/d/1Myo8LKynOBocHy8WZS6cGNNxnzbyWDBkSaSSwz_2KeU/edit?usp=sharing
-## Market Research
+## Market research
 https://docs.google.com/document/d/1xm8WNsQd0XCwPNxJAfxLSfZTyXjMIz36o3DcMoGmtiY/edit?usp=sharing
 ## Screenshots
 |<img src="devconss/1.jpg" width="400">|<img src="devconss/2.jpg" width="400">
